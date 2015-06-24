@@ -4,9 +4,9 @@ $db = new database();
 
 class Session {
     private $loggedIn = false;
-    private $username;
-    private $name;
-    private $uid;
+    public $username;
+    public $name;
+    public $uid;
     function __construct() {
         session_start();
         session_regenerate_id();
@@ -57,17 +57,6 @@ class Session {
 };
 
 $session = new Session();
-if ($session->checkLoggedIn() === true) {
-    echo "true";
-} else
-    echo "false";
-if ($session->login('brian', 'test') === true) {
-    echo "true";
-} else
-    echo "false";
-if ($session->checkLoggedIn() === true) {
-    echo "true";
-} else
-    echo "false";
-print_r($_SESSION);
+//$session->login('brian', 'test');
+//$session->logout();
 ?>
