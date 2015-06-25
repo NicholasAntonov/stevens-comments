@@ -4,6 +4,7 @@
 //post.php
 
 require_once("include/databaseClassMySQLi.php");
+require_once("include/session.php");
 
 header('Content-Type: application/json');
 
@@ -18,11 +19,13 @@ if (isset($_GET['start']) && isset($_GET['count'])) {
     $count = 20;
 }
 
-    $query = 'select id, name, u_id, post, date, showName from posts natural join users order by date desc limit ' . $start . ', ' . $count;
+    $query = 'select id, u_id, name, post, date, showName from posts natural join users order by date desc limit ' . $start . ', ' . $count;
     $db->send_sql($query);
     while (($row = $db->next_row()) !== false && !empty($row)) {
         if ($row['showName'] == 0)
             $row['name'] = "anon";
+        if ($session->checkLoggedIn() === true && $session->uid != $row['u_id'])
+            $row['u_id'] = -1;
         array_push($results, $row);
     }
 echo json_encode($results);

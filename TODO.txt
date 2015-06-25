@@ -1,0 +1,46 @@
+PHP
+    Basic functionality
+        [X] Login
+        [X] Check log in
+        [X] Registration
+        [ ] Admin Features
+    Posts
+        [I] Get all posts
+            User id will be shown if you're logged in as that user. This can be used to delete a post
+            [ ] Show votes
+        [I] Get logged in user posts
+            [ ] Vote count
+        [X] Create new post
+        [ ] Voting up/down
+        [ ] Delete post
+    Comments
+        [I] Get comments for a post
+            User id will be shown if you're logged in as that user. This can be used to delete a comment.
+            [ ] Vote count
+        [X] Create a comment for a post
+        [ ] Voting up/down
+        [ ] Delete comment
+    Messages
+        [ ] New message
+        [ ] Get all user messages
+        [ ] Get one message logged in user
+HTML
+    [ ] Main Template
+Javascript
+    [ ] Main Page
+        [ ] Register
+        [ ] Log in
+        [ ] Posts
+            [ ] view
+            [ ] new
+        [ ] Comments
+            [ ] view
+            [ ] new
+        [ ] Messages
+    [ ] Messages
+        [ ] view all
+        [ ] view
+        [ ] new
+CSS
+    [ ] Make stuff pretty
+
