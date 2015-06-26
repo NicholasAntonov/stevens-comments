@@ -10,18 +10,17 @@ PHP
         [X] Get logged in user posts
         [X] Create new post
         [X] Voting up/down
-        [ ] Delete post
+        [X] Delete post
     Comments
-        [I] Get comments for a post
+        [X] Get comments for a post
             User id will be shown if you're logged in as that user. This can be used to delete a comment.
         [X] Create a comment for a post
         [X] Voting up/down
-        [ ] Delete comment
+        [X] Delete comment
     Messages
-        [ ] New message
-        [ ] Get all user messages
-        [ ] Get one message logged in user
-        [ ] Delete message
+        [X] New message
+        [X] Get all user messages
+        [X] Delete message
 HTML
     [ ] Main Template
 Javascript

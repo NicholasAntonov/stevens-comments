@@ -4,6 +4,9 @@
 //userPost.php?post=postcontent&showName=1
 //userPost.php?post=postcontent
 
+//delete
+//userPost.php?delete=p_id
+
 //get
 //userPost.php?start=0&count=10
 //userPost.php
@@ -31,6 +34,15 @@ if (isset($_GET['post'])) {
     } else {
         array_push($results, "Please log in");
     }
+} else if (isset($_GET['delete'])) {
+    $delete = $db->escape($_GET['delete']);
+    $query = 'delete from posts where p_id='.$delete.' and u_id='.$session->uid;
+    if ($session->checkLoggedIn() === true) {
+        $db->send_sql($query);
+        array_push($results, "success");
+    } else {
+        array_push($results, "Please log in");
+    }
 } else {
     if (isset($_GET['start']) && isset($_GET['count'])) {
         $start = $db->escape($_GET['start']);
@@ -44,6 +56,8 @@ if (isset($_GET['post'])) {
         $db->send_sql($query);
         while (($row = $db->next_row()) !== false && !empty($row)) {
             array_push($results, $row);
+            if ($row['showName'] == 0)
+                $row['name'] = "anon";
         }
     }
 }

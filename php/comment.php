@@ -32,6 +32,15 @@ if (isset($_GET['comment']) && isset($_GET['p_id'])) {
     } else {
         array_push($results, "Please log in");
     }
+} else if (isset($_GET['delete'])) {
+    $delete = $db->escape($_GET['delete']);
+    $query = 'delete from comments where c_id='.$delete.' and u_id='.$session->uid;
+    if ($session->checkLoggedIn() === true) {
+        $db->send_sql($query);
+        array_push($results, "success");
+    } else {
+        array_push($results, "Please log in");
+    }
 } else if (isset($_GET['p_id'])) {
     $p_id = $db->escape($_GET['p_id']);
     if (isset($_GET['start']) && isset($_GET['count'])) {
@@ -47,8 +56,10 @@ if (isset($_GET['comment']) && isset($_GET['p_id'])) {
     while (($row = $db->next_row()) !== false && !empty($row)) {
         if ($session->checkLoggedIn() === true && $session->uid != $row['u_id'])
             $row['u_id'] = -1;
+        if ($row['showName'] == 0)
+            $row['name'] = "anon";
         array_push($results, $row);
-        }
+    }
 }
 echo json_encode($results);
 
