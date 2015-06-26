@@ -40,7 +40,7 @@ if (isset($_GET['post'])) {
         $count = 20;
     }
     if ($session->checkLoggedIn() === true) {
-        $query = 'select id, name, u_id, post, date, showName from posts natural join users where u_id=\'' . $session->uid . '\' order by date desc limit ' . $start . ', ' . $count;
+        $query = 'select p_id, name, u_id, post, date, showName from posts natural join users where u_id=\'' . $session->uid . '\' order by date desc limit ' . $start . ', ' . $count;
         $db->send_sql($query);
         while (($row = $db->next_row()) !== false && !empty($row)) {
             array_push($results, $row);

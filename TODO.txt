@@ -5,20 +5,17 @@ PHP
         [X] Registration
         [ ] Admin Features
     Posts
-        [I] Get all posts
+        [X] Get all posts
             User id will be shown if you're logged in as that user. This can be used to delete a post
-            [ ] Show votes
-        [I] Get logged in user posts
-            [ ] Vote count
+        [X] Get logged in user posts
         [X] Create new post
-        [ ] Voting up/down
+        [X] Voting up/down
         [ ] Delete post
     Comments
         [I] Get comments for a post
             User id will be shown if you're logged in as that user. This can be used to delete a comment.
-            [ ] Vote count
         [X] Create a comment for a post
-        [ ] Voting up/down
+        [X] Voting up/down
         [ ] Delete comment
     Messages
         [ ] New message
