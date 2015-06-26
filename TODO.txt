@@ -21,6 +21,7 @@ PHP
         [ ] New message
         [ ] Get all user messages
         [ ] Get one message logged in user
+        [ ] Delete message
 HTML
     [ ] Main Template
 Javascript

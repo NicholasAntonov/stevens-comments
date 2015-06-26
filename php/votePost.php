@@ -6,7 +6,7 @@
 require_once("include/databaseClassMySQLi.php");
 require_once("include/session.php");
 
-//header('Content-Type: application/json');
+header('Content-Type: application/json');
 
 $db = new database();
 
@@ -52,10 +52,6 @@ if (isset($_GET['p_id'])) {
         }
     }
     array_push($results, "success");
-    $db->send_sql("select * from post_votes");
-    $db->printout();
-    $db->send_sql("select * from posts");
-    $db->printout();
 }
 
 echo json_encode($results);
