@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 26, 2015 at 02:40 AM
+-- Generation Time: Jun 27, 2015 at 03:37 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `stevens_comments`
 --
+CREATE DATABASE IF NOT EXISTS `stevens_comments` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `stevens_comments`;
 
 -- --------------------------------------------------------
 
@@ -64,6 +66,21 @@ INSERT INTO `comment_votes` (`c_id`, `u_id`, `value`) VALUES
 (0, 1, 1),
 (1, 1, 1),
 (2, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `messages`
+--
+
+CREATE TABLE IF NOT EXISTS `messages` (
+  `m_id` int(11) NOT NULL,
+  `to_uid` int(11) NOT NULL,
+  `from_uid` int(11) NOT NULL,
+  `message` varchar(2048) NOT NULL,
+  `date` date NOT NULL,
+  `showName` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -147,6 +164,12 @@ ALTER TABLE `comment_votes`
   ADD PRIMARY KEY (`c_id`,`u_id`);
 
 --
+-- Indexes for table `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`m_id`);
+
+--
 -- Indexes for table `posts`
 --
 ALTER TABLE `posts`
@@ -173,6 +196,11 @@ ALTER TABLE `users`
 --
 ALTER TABLE `comments`
   MODIFY `c_id` int(12) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `m_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `posts`
 --
