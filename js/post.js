@@ -1,17 +1,22 @@
 
-Posts = {}
+Post = {}
 
-Posts.model = function() {
+Post.model = function() {
 
 }
 
-Posts.controller = function() {
+//make a higher level
+Post.controller = function() {
     var ctrl = this
     ctrl.posts = m.request({method: "GET", url: "/stevens-comments/php/post.php"})
-    //for each post, make a request for its comments and add it on
+    m.route.mode = "hash";
+    m.route(document.body, "/login", {
+        "/login": Login,
+        "/:default": Post
+    });
 }
 
-Posts.view = function(ctrl) {
+Post.view = function(ctrl) {
     return m('.posts', [
         ctrl.posts().map(function (post, idx) {
             return m('section', [
@@ -20,12 +25,10 @@ Posts.view = function(ctrl) {
                 m('p', post["post"]),
                 m('p', post["votes"]),
                 m('p', post["u_id"]), //if u_id isn't -1, then it is the current user's post. Add a delete button
-                m('p', post["value"]) //if value exists, then the user already voted
+                m('p', post["value"]), //if value exists, then the user already voted
+                m.component(Comment, { p_id : post["p_id"]}),
+                m('hr')
             ])
         })
     ])
-}
-
-function login() {
-    m.request({method: "POST", url: "/stevens-comments/php/login.php", data: {username: "brian", password: "test"}})
 }

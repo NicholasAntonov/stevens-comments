@@ -5,7 +5,10 @@
     <link rel="stylesheet" href="css/main.css">
     <script src="js/include/mithril.min.js"></script>
     <script src="js/include/mithril.min.js.map"></script>
-    <script src="js/posts/posts.js"></script>
+    <script src="js/include/functions.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/comment.js"></script>
+    <script src="js/post.js"></script>
     <title>Stevens-Comments</title>
 </head>
 <body>
@@ -18,7 +21,7 @@
 <!-- insert js for content -->
 <div id="posts"></div>
 <script>
-    m.mount(document.getElementById('posts'), Posts)
+    m.mount(document.getElementById('posts'), Post)
 </script>
 
 <footer>
