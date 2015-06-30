@@ -51,8 +51,15 @@ h1 {
 }
 
 .login-box {
+  position: fixed;
+  z-index: 10;
+  background: white;
+  padding: 5px;
   top: 0;
   left: auto;
   right: 0;
   bottom: auto;
-  border-radius: 2px 0 0 0;
+  border-radius: 0 0 0 2px;
+  
+  border-top: solid 2px red;
+}
