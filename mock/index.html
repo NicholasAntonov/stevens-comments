@@ -1,0 +1,133 @@
+<!doctype html>
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css"/>
+
+<title>Stevens Compliments and Crushes</title>
+<meta charset="utf-8"></meta>
+
+<header>
+  <nav class="top-nav">
+    <h1 class="center-align">
+      Stevens Compliments and Crushes
+    </h1>
+  </nav>
+</header>
+<main>
+    
+    <h2>Submit a post:</h2>
+    <form>
+        <textarea rows="4"></textarea>
+        <p>
+            <input type="radio" name="named" value="no" checked="checked" id="post-anon"/>
+            <label for="post-anon">Submit anonymously</label>
+        </p>
+        <p>
+            <input type="radio" name="named" value="yes" id="post-name"/>
+            <label for="post-name">Submit with name</label>
+        </p>
+        
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+          <i class="material-icons">send</i>
+        </button>
+        
+        <!--<input type="submit" class="button" value="submit">-->
+    </form>
+
+    <ul>
+    <!--{{#each submissionList}}-->
+        <li class="submission card-panel">
+            <div class="vote left">
+                <i class="small material-icons">thumb_up</i><br/>
+                <div class="count center-align">13</div>
+            </div>
+            <p  class="flow-tex">Lorizzle ipsizzle dawg sizzle fo shizzle, adipiscing crunk. Nullam sapien velizzle, volutpat, shizzlin dizzle quizzle, gravida vizzle, dang. Pellentesque eget tortor. Sed erizzle. Rizzle black shizznit pizzle fo shizzle my nizzle tempizzle doggy. Maurizzle bow wow wow fo cool the bizzle. Funky fresh in tortizzle. Pellentesque you son of a bizzle rhoncizzle nisi. Dope check out this boom shackalack gangsta gangsta. My shizz dapibus. Fo shizzle mah nizzle fo rizzle, mah home g-dizzle tellizzle i'm in the shizzle, pretium the bizzle, mattizzle phat, eleifend fo shizzle mah nizzle fo rizzle, mah home g-dizzle, nunc. Fizzle suscipizzle. Nizzle pizzle sure sizzle purus. Fo shizzle mah nizzle fo rizzle, mah home g-dizzle tellizzle i'm in the shizzle, pretium the bizzle, mattizzle phat, eleifend fo shizzle mah nizzle fo rizzle, mah home g-dizzle, nunc. Fizzle suscipizzle. Nizzle pizzle sure sizzle purus. <span class="quote-by">Anonymous</span></p>
+            <div class="comments-container">
+                <ul  class="collection with-header">
+                    <li><h3>Comments:</h3></li>
+                    <!--{{#each comments}}-->
+                        <li class="comment">
+                            <blockquote>In shiznit leo fo shizzle mah nizzle fo rizzle, mah home g-dizzle break yo neck, yall. Da bomb shiz, nizzle non fo shizzle facilisizzle, sem fo shizzle my nizzle mofo sizzle, non dang felizzle a est. Suspendisse mah nizzle augue. Sed egestizzle lectus brizzle i saw beyonces tizzles and my pizzle went crizzle. Proin consectetuer things sapien. Etiam aliquet, dizzle sit amet accumsizzle tincidunt, fizzle sizzle sizzle sem, ac vestibulizzle fo shizzle mah nizzle fo rizzle, mah home g-dizzle nisi sit amizzle boom shackalack. Maecenizzle mah nizzle tortizzle vel enizzle. <br/><span class="quote-by">G Dawg</span></blockquote>
+                        </li>
+                        <li class="comment">
+                          <blockquote>fo shizzle mah nizzle fo rizzle, mah home g-dizzle nisi sit amizzle boom shackalack. Maecenizzle mah nizzle tortizzle vel enizzle.<br/><span class="quote-by">H Dawg</span></blockquote>
+                        </li>
+                    <!--{{/each}}-->
+                </ul>
+                <form>
+                    <h4>Comment on this post:</h4>
+                    <textarea rows="3"></textarea>
+                    <p>
+                        <input type="radio" name="named" value="no" checked="checked" id="post-anon"/>
+                        <label for="post-anon">
+                            Submit anonymously
+                        </label>
+                    </p>
+                    <p>
+                        <input type="radio" name="named" value="yes" id="post-name"/>
+                        <label for="post-name">
+                            Submit with name
+                        </label>
+                    </p>
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+    <!--<i class="material-icons">send</i>-->
+  </button>
+                </form>
+            </div>
+
+        </li>
+      <li class="submission card-panel">
+            <div class="vote left">
+                <i class="small material-icons">thumb_up</i><br/>
+                <div class="count center-align">13</div>
+            </div>
+            <p  class="flow-tex">Lorizzle ipsizzle dawg sizzle fo shizzle, adipiscing crunk. Nullam sapien velizzle, volutpat, shizzlin dizzle quizzle, gravida vizzle, dang. Pellentesque eget tortor. Sed erizzle. Rizzle black shizznit pizzle fo shizzle my nizzle tempizzle doggy. Maurizzle bow wow wow fo cool the bizzle. Funky fresh in tortizzle. Pellentesque you son of a bizzle rhoncizzle nisi. Dope check out this boom shackalack gangsta gangsta. My shizz dapibus. Fo shizzle mah nizzle fo rizzle, mah home g-dizzle tellizzle i'm in the shizzle, pretium the bizzle, mattizzle phat, eleifend fo shizzle mah nizzle fo rizzle, mah home g-dizzle, nunc. Fizzle suscipizzle. Nizzle pizzle sure sizzle purus. Fo shizzle mah nizzle fo rizzle, mah home g-dizzle tellizzle i'm in the shizzle, pretium the bizzle, mattizzle phat, eleifend fo shizzle mah nizzle fo rizzle, mah home g-dizzle, nunc. Fizzle suscipizzle. Nizzle pizzle sure sizzle purus. <span class="quote-by">Anonymous</span></p>
+            <div class="comments-container">
+                <ul  class="collection with-header">
+                    <li><h3>Comments:</h3></li>
+                    <!--{{#each comments}}-->
+                        <li class="comment">
+                            <blockquote>In shiznit leo fo shizzle mah nizzle fo rizzle, mah home g-dizzle break yo neck, yall. Da bomb shiz, nizzle non fo shizzle facilisizzle, sem fo shizzle my nizzle mofo sizzle, non dang felizzle a est. Suspendisse mah nizzle augue. Sed egestizzle lectus brizzle i saw beyonces tizzles and my pizzle went crizzle. Proin consectetuer things sapien. Etiam aliquet, dizzle sit amet accumsizzle tincidunt, fizzle sizzle sizzle sem, ac vestibulizzle fo shizzle mah nizzle fo rizzle, mah home g-dizzle nisi sit amizzle boom shackalack. Maecenizzle mah nizzle tortizzle vel enizzle. <br/><span class="quote-by">G Dawg</span></blockquote>
+                        </li>
+                        <li class="comment">
+                          <blockquote>fo shizzle mah nizzle fo rizzle, mah home g-dizzle nisi sit amizzle boom shackalack. Maecenizzle mah nizzle tortizzle vel enizzle.<br/><span class="quote-by">H Dawg</span></blockquote>
+                        </li>
+                    <!--{{/each}}-->
+                </ul>
+                <form>
+                    <h4>Comment on this post:</h4>
+                    <textarea rows="3"></textarea>
+                    <p>
+                        <input type="radio" name="named" value="no" checked="checked" id="post-anon"/>
+                        <label for="post-anon">
+                            Submit anonymously
+                        </label>
+                    </p>
+                    <p>
+                        <input type="radio" name="named" value="yes" id="post-name"/>
+                        <label for="post-name">
+                            Submit with name
+                        </label>
+                    </p>
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+    <!--<i class="material-icons">send</i>-->
+  </button>
+                </form>
+            </div>
+
+        </li>
+    <!--{{/each}}-->
+    </ul>
+</main>
+<footer class="page-footer">
+  <div class="footer-copyright">
+    <div class="center-align valign">
+      © 2015 Nicholas Antonov & Brian Zawizawa for CS546 at Stevens
+    </div>
+  </div>
+</footer>
