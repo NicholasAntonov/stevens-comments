@@ -12,9 +12,9 @@ $db = new database();
 
 $results = array();
 
-if (isset($_GET['p_id'])) {
-    $p_id = $db->escape($_GET['p_id']);
-    if (isset($_GET['up'])) {
+if (isset($_POST['p_id'])) {
+    $p_id = $db->escape($_POST['p_id']);
+    if (isset($_POST['up'])) {
         $query = 'select value from post_votes where p_id=\''.$p_id.'\' and u_id=\''.$session->uid.'\'';
         $db->send_sql($query);
         $row = $db->next_row();
@@ -32,7 +32,7 @@ if (isset($_GET['p_id'])) {
                 $db->send_sql($query);
             }
         }
-    } else if (isset($_GET['down'])) {
+    } else if (isset($_POST['down'])) {
         $query = 'select value from post_votes where p_id=\''.$p_id.'\' and u_id=\''.$session->uid.'\'';
         $db->send_sql($query);
         $row = $db->next_row();

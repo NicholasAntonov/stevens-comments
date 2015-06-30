@@ -1,9 +1,10 @@
 <?php
 
-//put
+//POST
 //message.php?to=uid&message=content&showName=1
 //message.php?to=uid&message=content
 
+//POST
 //delete
 //message.php?delete=m_id
 
@@ -20,23 +21,23 @@ $db = new database();
 $results = array();
 
 
-if (isset($_GET['message']) && isset($_GET['to'])) {
-    if (isset($_GET['showName']))
-        $showName = $db->escape($_GET['showName']);
+if (isset($_POST['message']) && isset($_POST['to'])) {
+    if (isset($_POST['showName']))
+        $showName = $db->escape($_POST['showName']);
     else
         $showName = 0;
     if ($session->checkLoggedIn() === true) {
         date_default_timezone_set('UTC');
-        $message = $db->escape($_GET['message']);
-        $to = $db->escape($_GET['to']);
+        $message = $db->escape($_POST['message']);
+        $to = $db->escape($_POST['to']);
         $query = 'insert into messages(to_uid, from_id, message, date, showName) values (\'' . $to . '\', \'' . $session->uid . '\', \'' . $message . '\', \'' . date("Y-m-d") . '\', \'' . $showName . '\')';
         $db->send_sql($query);
         array_push($results, "success");
     } else {
         array_push($results, "Please log in");
     }
-} else if (isset($_GET['delete'])) {
-    $delete = $db->escape($_GET['delete']);
+} else if (isset($_POST['delete'])) {
+    $delete = $db->escape($_POST['delete']);
     $query = 'delete from messages where m_id='.$delete.' and u_id='.$session->uid;
     if ($session->checkLoggedIn() === true) {
         $db->send_sql($query);

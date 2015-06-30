@@ -7,6 +7,7 @@ class Session {
     public $username;
     public $name;
     public $uid;
+    private $admin;
     function __construct() {
         session_start();
         session_regenerate_id();
@@ -15,6 +16,7 @@ class Session {
             $this->uid = $_SESSION['uid'];
             $this->username = $_SESSION['username'];
             $this->name = $_SESSION['name'];
+            $this->admin = $_SESSION['admin'];
         }
     }
     function checkLoggedIn() {
@@ -25,7 +27,7 @@ class Session {
         global $db;
         $username = $db->escape($username);
         $password = $db->escape($password);
-        $query = "select u_id, name, password from users where username='".$username."'";
+        $query = "select u_id, name, admin, password from users where username='".$username."'";
         $db->send_sql($query);
         $row = $db->next_row();
         if ($row === false || empty($row)) {
@@ -38,6 +40,7 @@ class Session {
             $_SESSION['name'] = $row['name'];
             $_SESSION['uid'] = $row['u_id'];
             $_SESSION['loggedIn'] = true;
+            $_SESSION['admin'] = $row['admin'];
             $this->loggedIn = true;
             $this->username = $username;
             $this->name = $row['name'];
@@ -53,6 +56,9 @@ class Session {
         foreach($_SESSION as $key=>$value) {
             unset($_SESSION[$key]);
         }
+    }
+    function isAdmin() {
+        return ($this->checkLoggedIn() && $this->admin);
     }
 };
 

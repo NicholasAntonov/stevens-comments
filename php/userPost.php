@@ -1,9 +1,10 @@
 <?php
 
-//put
+//POST
 //userPost.php?post=postcontent&showName=1
 //userPost.php?post=postcontent
 
+//POST
 //delete
 //userPost.php?delete=p_id
 
@@ -20,22 +21,22 @@ $db = new database();
 $results = array();
 
 
-if (isset($_GET['post'])) {
-    if (isset($_GET['showName']))
-        $showName = $db->escape($_GET['showName']);
+if (isset($_POST['post'])) {
+    if (isset($_POST['showName']))
+        $showName = $db->escape($_POST['showName']);
     else
         $showName = 0;
     if ($session->checkLoggedIn() === true) {
         date_default_timezone_set('UTC');
-        $post = $db->escape($_GET['post']);
+        $post = $db->escape($_POST['post']);
         $query = 'insert into posts(u_id, post, date, showName) values (\'' . $session->uid . '\', \'' . $post . '\', \'' . date("Y-m-d") . '\', \'' . $showName . '\')';
         $db->send_sql($query);
         array_push($results, "success");
     } else {
         array_push($results, "Please log in");
     }
-} else if (isset($_GET['delete'])) {
-    $delete = $db->escape($_GET['delete']);
+} else if (isset($_POST['delete'])) {
+    $delete = $db->escape($_POST['delete']);
     $query = 'delete from posts where p_id='.$delete.' and u_id='.$session->uid;
     if ($session->checkLoggedIn() === true) {
         $db->send_sql($query);

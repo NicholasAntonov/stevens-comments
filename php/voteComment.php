@@ -1,5 +1,4 @@
 <?php
-//get
 //voteComment.php?c_id=1&up
 //voteComment.php?c_id=1&down
 
@@ -12,9 +11,9 @@ $db = new database();
 
 $results = array();
 
-if (isset($_GET['c_id'])) {
-    $c_id = $db->escape($_GET['c_id']);
-    if (isset($_GET['up'])) {
+if (isset($_POST['c_id'])) {
+    $c_id = $db->escape($_POST['c_id']);
+    if (isset($_POST['up'])) {
         $query = 'select value from comment_votes where c_id=\''.$c_id.'\' and u_id=\''.$session->uid.'\'';
         $db->send_sql($query);
         $row = $db->next_row();
@@ -32,7 +31,7 @@ if (isset($_GET['c_id'])) {
                 $db->send_sql($query);
             }
         }
-    } else if (isset($_GET['down'])) {
+    } else if (isset($_POST['down'])) {
         $query = 'select value from comment_votes where c_id=\''.$c_id.'\' and u_id=\''.$session->uid.'\'';
         $db->send_sql($query);
         $row = $db->next_row();

@@ -3,16 +3,16 @@ require_once('include/databaseClassMySQLi.php');
 $db = new database();
 header('Content-Type: application/json');
 $result = array();
-if( isset($_GET['name']) &&
-    isset($_GET['username']) &&
-    isset($_GET['password']) &&
-    isset($_GET['cpassword']) &&
-    isset($_GET['email']) ) {
-    $name = htmlentities($_GET['name']);
-    $username = htmlentities($_GET['username']);
-    $password = ($_GET['password']);
-    $cpassword = ($_GET['cpassword']);
-    $email = htmlentities($_GET['email']);
+if( isset($_POST['name']) &&
+    isset($_POST['username']) &&
+    isset($_POST['password']) &&
+    isset($_POST['cpassword']) &&
+    isset($_POST['email']) ) {
+    $name = $db->escape($_POST['name']);
+    $username = $db->escape($_POST['username']);
+    $password = $db->escape($_POST['password']);
+    $cpassword = $db->escape($_POST['cpassword']);
+    $email = $db->escape($_POST['email']);
     if (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$/", $password))
         array_push($result, "Password must contain a lower case letter, upper case letter, and number");
     else if ($password != $cpassword)

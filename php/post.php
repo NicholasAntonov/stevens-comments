@@ -25,7 +25,7 @@ if (isset($_GET['start']) && isset($_GET['count'])) {
     while (($row = $db->next_row()) !== false && !empty($row)) {
         if ($row['showName'] == 0)
             $row['name'] = "anon";
-        if ($session->checkLoggedIn() === true && $session->uid != $row['u_id'])
+        if ($session->checkLoggedIn() === true && $session->uid != $row['u_id'] && !$session->isAdmin())
             $row['u_id'] = -1;
         array_push($results, $row);
     }

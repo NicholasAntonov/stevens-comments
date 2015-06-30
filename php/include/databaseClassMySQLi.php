@@ -77,7 +77,7 @@
         public function escape($str) {
             if (!isset($this->mysqli))
                 $this->connect();
-            return $this->mysqli->escape_string($str);
+            return htmlentities(addslashes($this->mysqli->escape_string($str))); //this should be enough right?
         }
 
 		public function send_sql($sql) {
@@ -129,8 +129,12 @@
 		// returns an array with the next row
 		public function next_row()
 		{
-			if (isset($this->res))
-				return $this->res->fetch_assoc();
+			if (isset($this->res)) {
+                $row = $this->res->fetch_assoc();
+                foreach ($row as $key => $value) {
+                    $row[$key] = htmlentities($value);
+                }
+            }
 			echo "You need to make a query first!!!";
 			return false;
 		}
