@@ -131,9 +131,11 @@
 		{
 			if (isset($this->res)) {
                 $row = $this->res->fetch_assoc();
-                foreach ($row as $key => $value) {
-                    $row[$key] = htmlentities($value);
-                }
+                if (!empty($row))
+                    foreach ($row as $key => $value) {
+                        $row[$key] = htmlentities($value);
+                    }
+                return $row;
             }
 			echo "You need to make a query first!!!";
 			return false;
