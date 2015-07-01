@@ -36,15 +36,6 @@ if (isset($_POST['message']) && isset($_POST['to'])) {
     } else {
         array_push($results, "Please log in");
     }
-} else if (isset($_POST['delete'])) {
-    $delete = $db->escape($_POST['delete']);
-    $query = 'delete from messages where m_id='.$delete.' and u_id='.$session->uid;
-    if ($session->checkLoggedIn() === true) {
-        $db->send_sql($query);
-        array_push($results, "success");
-    } else {
-        array_push($results, "Please log in");
-    }
 } else {
     if (isset($_GET['start']) && isset($_GET['count'])) {
         $start = $db->escape($_GET['start']);

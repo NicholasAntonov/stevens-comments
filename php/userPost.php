@@ -37,7 +37,7 @@ if (isset($_POST['post'])) {
     }
 } else if (isset($_POST['delete'])) {
     $delete = $db->escape($_POST['delete']);
-    $query = 'delete from posts where p_id='.$delete.' and u_id='.$session->uid;
+    $query = 'update posts set hidden=1 where p_id='.$delete.' and u_id='.$session->uid;
     if ($session->checkLoggedIn() === true) {
         $db->send_sql($query);
         array_push($results, "success");
@@ -53,7 +53,7 @@ if (isset($_POST['post'])) {
         $count = 20;
     }
     if ($session->checkLoggedIn() === true) {
-        $query = 'select p_id, name, u_id, post, date, showName from posts natural join users where u_id=\'' . $session->uid . '\' order by date desc limit ' . $start . ', ' . $count;
+        $query = 'select p_id, name, u_id, post, date, showName from posts natural join users where u_id=\'' . $session->uid . '\' and hidden=0 order by date desc limit ' . $start . ', ' . $count;
         $db->send_sql($query);
         while (($row = $db->next_row()) !== false && !empty($row)) {
             array_push($results, $row);

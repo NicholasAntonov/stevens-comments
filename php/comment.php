@@ -34,7 +34,7 @@ if (isset($_POST['comment']) && isset($_POST['p_id'])) {
     }
 } else if (isset($_POST['delete'])) {
     $delete = $db->escape($_POST['delete']);
-    $query = 'delete from comments where c_id='.$delete.' and u_id='.$session->uid;
+    $query = 'update comments set hidden=1 where c_id='.$delete.' and u_id='.$session->uid;
     if ($session->checkLoggedIn() === true) {
         $db->send_sql($query);
         array_push($results, "success");
@@ -51,7 +51,7 @@ if (isset($_POST['comment']) && isset($_POST['p_id'])) {
         $count = 20;
     }
     //value = whether the use voted 1 or -1 or null
-    $query = 'select name, u_id, p_id, comments.c_id, comment, date, showName, votes, value from comments natural join users left join (select value, c_id from comment_votes where u_id=\''.$session->uid.'\') a on comments.c_id=a.c_id where p_id=\'' . $p_id . '\' order by date desc limit ' . $start . ', ' . $count;
+    $query = 'select name, u_id, p_id, comments.c_id, comment, date, showName, votes, value from comments natural join users left join (select value, c_id from comment_votes where u_id=\''.$session->uid.'\') a on comments.c_id=a.c_id where p_id=\'' . $p_id . '\' and hidden=0 order by date desc limit ' . $start . ', ' . $count;
     $db->send_sql($query);
     while (($row = $db->next_row()) !== false && !empty($row)) {
         if ($session->checkLoggedIn() === true && $session->uid != $row['u_id'] && !$session->isAdmin())

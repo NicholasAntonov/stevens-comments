@@ -20,7 +20,7 @@ if (isset($_GET['start']) && isset($_GET['count'])) {
 }
 
     //value = whether the use voted 1 or -1 or null
-    $query = 'select posts.p_id, u_id, name, post, date, showName, votes, a.value from posts natural join users left join (select value, p_id from post_votes where u_id=\''.$session->uid.'\') a on posts.p_id=a.p_id order by date desc limit ' . $start . ', ' . $count;
+    $query = 'select posts.p_id, u_id, name, post, date, showName, votes, a.value from posts natural join users left join (select value, p_id from post_votes where u_id=\''.$session->uid.'\') a on posts.p_id=a.p_id where hidden=0 order by date desc limit ' . $start . ', ' . $count;
     $db->send_sql($query);
     while (($row = $db->next_row()) !== false && !empty($row)) {
         if ($row['showName'] == 0)

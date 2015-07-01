@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 01, 2015 at 02:48 AM
+-- Generation Time: Jul 01, 2015 at 03:09 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -35,16 +35,17 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `comment` varchar(1024) NOT NULL,
   `date` date NOT NULL,
   `showName` tinyint(1) NOT NULL DEFAULT '0',
-  `votes` int(11) NOT NULL DEFAULT '0'
+  `votes` int(11) NOT NULL DEFAULT '0',
+  `hidden` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `comments`
 --
 
-INSERT INTO `comments` (`c_id`, `u_id`, `p_id`, `comment`, `date`, `showName`, `votes`) VALUES
-(1, 1, 1, 'testcomment1', '2015-06-25', 0, 0),
-(2, 1, 1, 'testcomment1', '2015-06-26', 0, 0);
+INSERT INTO `comments` (`c_id`, `u_id`, `p_id`, `comment`, `date`, `showName`, `votes`, `hidden`) VALUES
+(1, 1, 1, 'testcomment1', '2015-06-25', 0, 0, 0),
+(2, 1, 1, 'testcomment1', '2015-06-26', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -94,16 +95,17 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `post` varchar(1024) NOT NULL,
   `date` date NOT NULL,
   `showName` tinyint(1) NOT NULL DEFAULT '0',
-  `votes` int(11) NOT NULL DEFAULT '0'
+  `votes` int(11) NOT NULL DEFAULT '0',
+  `hidden` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`p_id`, `u_id`, `post`, `date`, `showName`, `votes`) VALUES
-(1, 1, 'test post', '2015-06-23', 0, 0),
-(2, 1, 'testpost2', '2015-06-25', 0, -35);
+INSERT INTO `posts` (`p_id`, `u_id`, `post`, `date`, `showName`, `votes`, `hidden`) VALUES
+(1, 1, 'test post', '2015-06-23', 0, 0, 0),
+(2, 1, 'testpost2', '2015-06-25', 0, -35, 0);
 
 -- --------------------------------------------------------
 
