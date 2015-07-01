@@ -24,6 +24,10 @@ h1 {
   -webkit-margin-after: 0;
 }
 
+.quote-by {
+  cursor: pointer;
+}
+
 .quote-by:before {
   content: "~";
 }
@@ -31,7 +35,6 @@ h1 {
 .count {
   border: solid black 1px;
   border-radius: 2px;
-  display: inline-block;
 }
 
 .vote {
@@ -67,4 +70,8 @@ h1 {
 nav {
   height: auto;
   padding: 10px;
+}
+
+message-to {
+  display: none;
 }
