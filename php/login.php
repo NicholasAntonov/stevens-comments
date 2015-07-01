@@ -4,10 +4,10 @@ require_once("include/jsonDecode.php");
 header('Content-Type: application/json');
 
 $results = array();
-if (isset($_GET['username']) && isset($_GET['password'])) {
-    $username = $_GET['username'];
+if (isset($_GET['email']) && isset($_GET['password'])) {
+    $email = $_GET['email'];
     $password = $_GET['password'];
-    if ($session->login($username, $password) === true) {
+    if ($session->login($email, $password) === true) {
         array_push($results, "success");
     } else {
         array_push($results, "fail");

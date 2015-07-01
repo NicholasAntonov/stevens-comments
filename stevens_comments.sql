@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 27, 2015 at 03:37 AM
+-- Generation Time: Jul 01, 2015 at 02:48 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -133,7 +133,6 @@ INSERT INTO `post_votes` (`p_id`, `u_id`, `value`) VALUES
 
 CREATE TABLE IF NOT EXISTS `users` (
   `u_id` int(11) NOT NULL,
-  `username` varchar(54) NOT NULL,
   `password` varchar(256) NOT NULL,
   `email` varchar(256) NOT NULL,
   `name` varchar(128) NOT NULL,
@@ -144,8 +143,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`u_id`, `username`, `password`, `email`, `name`, `admin`) VALUES
-(1, 'brian', '$2y$10$pl5SOtHvC.6Z/2uFHYyyYOwpSBabOdziaJq2D5qG4rGE8Vxmz0kTu', 'brianz176@gmail.com', 'brian zawisza', 1);
+INSERT INTO `users` (`u_id`, `password`, `email`, `name`, `admin`) VALUES
+(1, '$2y$10$pl5SOtHvC.6Z/2uFHYyyYOwpSBabOdziaJq2D5qG4rGE8Vxmz0kTu', 'brianz176@gmail.com', 'brian zawisza', 1);
 
 --
 -- Indexes for dumped tables
