@@ -6,7 +6,6 @@ body {
 
 main {
   flex: 1 0 auto;
-  padding: 15px;
 }
 
 input {
@@ -62,4 +61,10 @@ h1 {
   border-radius: 0 0 0 2px;
   
   border-top: solid 2px red;
+  cursor: pointer;
+}
+
+nav {
+  height: auto;
+  padding: 10px;
 }

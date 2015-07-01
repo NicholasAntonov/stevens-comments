@@ -18,7 +18,7 @@
     </h1>
   </nav>
 </header>
-<main>
+<main class="container">
     
     <h2>Submit a post:</h2>
     <form>
@@ -133,5 +133,71 @@
 </footer>
 
 <div class="login-box z-depth-2">
-  Log in / Register
+  <span onclick="$('#combo-modal').openModal();">Log in / Register</span>
+</div>
+
+<div id="combo-modal" class="modal">
+  <div class="modal-content">
+    <p>Thanks for using this site. To prevent abuse and allow for a rich featured experience, users are required to log in. Don't Worry! All your information will be kept anonymous as long as you choose to keep it that way.</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat left" onclick="$('#login-modal').openModal();">Log In</a>
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat left" onclick="$('#register-modal').openModal();">Register</a>
+  </div>
+</div>
+
+<div id="login-modal" class="modal">
+  <div class="modal-content">
+    <h4>Log In</h4>
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="login-email" type="email" class="validate">
+            <label for="login-email">Email</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="login-password" type="password" class="validate">
+            <label for="login-password">Password</label>
+          </div>
+        </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat right">Log In</a>
+  </div>
+</div>
+
+<div id="register-modal" class="modal">
+  <div class="modal-content">
+    <h4>Register</h4>
+      <form class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="first_name" type="text" class="validate">
+          <label for="first_name">First Name</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="last_name" type="text" class="validate">
+          <label for="last_name">Last Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password" type="password" class="validate">
+          <label for="password">Password</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="email" class="validate">
+          <label for="email">Email</label>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat right">Register</a>
+  </div>
 </div>
