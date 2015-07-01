@@ -1,6 +1,7 @@
 <?php
 
 //POST
+//also add for_name=steve to the end
 //userPost.php?post=postcontent&showName=1
 //userPost.php?post=postcontent
 
@@ -21,15 +22,18 @@ $db = new database();
 $results = array();
 
 
-if (isset($_POST['post'])) {
+if (isset($_POST['post']) && isset($_POST['for_name'])) {
     if (isset($_POST['showName']))
         $showName = $db->escape($_POST['showName']);
     else
         $showName = 0;
     if ($session->checkLoggedIn() === true) {
+        $db->send_sql("insert into ownage(u_id) values ('$session->uid')");
+        $ownage = $db->insert_id();
         date_default_timezone_set('UTC');
         $post = $db->escape($_POST['post']);
-        $query = 'insert into posts(u_id, post, date, showName) values (\'' . $session->uid . '\', \'' . $post . '\', \'' . date("Y-m-d") . '\', \'' . $showName . '\')';
+        $for_name = $db->escape($_POST['for_name']);
+        $query = 'insert into posts(u_id, post, date, showName, ownage_id, for_name) values (\'' . $session->uid . '\', \'' . $post . '\', \'' . date("Y-m-d") . '\', \'' . $showName . '\', \''.$ownage.'\', \''.$for_name.'\')';
         $db->send_sql($query);
         array_push($results, "success");
     } else {
