@@ -36,7 +36,10 @@ if (isset($_POST['comment']) && isset($_POST['p_id'])) {
     }
 } else if (isset($_POST['delete'])) {
     $delete = $db->escape($_POST['delete']);
-    $query = 'update comments set hidden=1 where c_id='.$delete.' and u_id='.$session->uid;
+    if ($session->isAdmin())
+        $query = 'update comments set hidden=1 where c_id='.$delete;
+    else
+        $query = 'update comments set hidden=1 where c_id='.$delete.' and u_id='.$session->uid;
     if ($session->checkLoggedIn() === true) {
         $db->send_sql($query);
         array_push($results, "success");
