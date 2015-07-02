@@ -19,13 +19,18 @@
   </nav>
 </header>
 <main class="container">
-    
+
     <form class="card-panel hoverable">
+      <div class="input-field">
+        <input id="post-title" placeholder="Who are you complimenting?"></input>
+        <label for="post-title">Submit a post!</label>
+      </div>
+
       <div class="input-field">
         <textarea id="post-textarea" class="materialize-textarea" length="1000"></textarea>
         <label for="post-textarea">Submit a post!</label>
       </div>
-        
+
       <div class="row">
         <div class="col s12 m8">
           <div>
@@ -53,7 +58,7 @@
                 <i class="small material-icons">thumb_up</i><br/>
                 <div class="count center-align">13</div>
             </div>
-          
+
             <p  class="flow-tex">Lorizzle ipsizzle dawg sizzle fo shizzle, adipiscing crunk. Nullam sapien velizzle, volutpat, shizzlin dizzle quizzle, gravida vizzle, dang. Pellentesque eget tortor. Sed erizzle. Rizzle black shizznit pizzle fo shizzle my nizzle tempizzle doggy. Maurizzle bow wow wow fo cool the bizzle. Funky fresh in tortizzle. Pellentesque you son of a bizzle rhoncizzle nisi. Dope check out this boom shackalack gangsta gangsta. My shizz dapibus. Fo shizzle mah nizzle fo rizzle, mah home g-dizzle tellizzle i'm in the shizzle, pretium the bizzle, mattizzle phat, eleifend fo shizzle mah nizzle fo rizzle, mah home g-dizzle, nunc. Fizzle suscipizzle. Nizzle pizzle sure sizzle purus. Fo shizzle mah nizzle fo rizzle, mah home g-dizzle tellizzle i'm in the shizzle, pretium the bizzle, mattizzle phat, eleifend fo shizzle mah nizzle fo rizzle, mah home g-dizzle, nunc. Fizzle suscipizzle. Nizzle pizzle sure sizzle purus. <a class="quote-by" onclick="$('#message-modal').openModal();" title="Send a private message">Anonymous</a></p>
           <form>
             <div class="input-field">
@@ -102,8 +107,8 @@
   </div>
 </footer>
 
-<div class="login-box z-depth-2">
-  <a><span onclick="$('#combo-modal').openModal();">Log in / Register</span></a>
+<div class="login-box z-depth-2"  onclick="$('#combo-modal').openModal();">
+  <a>Log in / Register</a>
 </div>
 
 <div id="combo-modal" class="modal">
@@ -111,8 +116,8 @@
     <p>Thanks for using this site. To prevent abuse and allow for a rich featured experience, users are required to log in. Don't Worry! All your information will be kept anonymous as long as you choose to keep it that way.</p>
   </div>
   <div class="modal-footer">
-    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat left" onclick="$('#login-modal').openModal();">Log In</a>
-    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat left" onclick="$('#register-modal').openModal();">Register</a>
+    <a class="modal-action modal-close waves-effect waves-green btn-flat left" onclick="$('#login-modal').openModal();">Log In</a>
+    <a class="modal-action modal-close waves-effect waves-green btn-flat left" onclick="$('#register-modal').openModal();">Register</a>
   </div>
 </div>
 
@@ -137,7 +142,7 @@
     </form>
   </div>
   <div class="modal-footer">
-    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat right">Log In</a>
+    <a class="modal-action modal-close waves-effect waves-green btn-flat right">Log In</a>
   </div>
 </div>
 
@@ -180,7 +185,7 @@
     </form>
   </div>
   <div class="modal-footer">
-    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat right">Register</a>
+    <a class="modal-action modal-close waves-effect waves-green btn-flat right">Register</a>
   </div>
 </div>
 
@@ -196,7 +201,7 @@
         <textarea id="message-textarea" class="materialize-textarea" length="1000"></textarea>
         <label for="message-textarea">Submit a post!</label>
       </div>
-        
+
       <div class="row">
         <div class="col s12 m7">
           <div>

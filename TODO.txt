@@ -23,6 +23,7 @@ PHP
         [X] Delete message
 HTML
     [ ] Main Template
+
 Javascript
     [ ] Main Page
         [ ] Register
@@ -39,5 +40,4 @@ Javascript
         [ ] view
         [ ] new
 CSS
-    [ ] Make stuff pretty
-
+    [X] Make stuff pretty
