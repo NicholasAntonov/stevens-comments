@@ -8409,5 +8409,8 @@ nav {
   height: auto;
   padding: 10px; }
 
-message-to {
+.hidden {
   display: none; }
+
+.side-icon {
+  padding: 5px; }

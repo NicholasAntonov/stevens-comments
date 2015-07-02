@@ -15,10 +15,45 @@ export default {
       method: "GET",
       url: 'checkLogin.php',
       deserialize: (value) => JSON.parse(value)
-    })
+    });
+
+    let name = m.prop(''),
+      password = m.prop(''),
+      passwordConfirmation = m.prop(''),
+      email = m.prop('');
+
+    function register () {
+      $.post('register.php', {
+          name: name(),
+          password: password(),
+          email: email()
+        }, function( data ) {
+          m.request({
+            method: "POST",
+            url: 'checkLogin.php',
+            extract: nonJsonErrors,
+            deserialize: (value) => JSON.parse(value)
+          }).then(loggedIn, (error) => console.log(error));
+          console.log(loggedIn());
+        });
+    }
+
+    function logout () {
+      $.post('logout.php');
+    }
+
+    function nonJsonErrors (xhr) {
+      return xhr.status > 200 ? JSON.stringify(xhr.responseText) : xhr.responseText;
+    }
 
     return {
-      posts
+      posts,
+      loggedIn,
+      name,
+      password,
+      passwordConfirmation,
+      email,
+      register
     }
   },
   view: function (ctrl) {
@@ -81,18 +116,17 @@ export default {
               ])
             ])
           ]),
-          m(".comments-container", post.comments.map((comment) => m("blockquote", [comment.comment, m("br"), m("a.quote-by[onclick='$(\'#message-modal\').openModal();'][title='Send a private message']", comment.name)]))
-            // m("blockquote", ["In shiznit leo fo shizzle mah nizzle fo rizzle, mah home g-dizzle break yo neck, yall. Da bomb shiz, nizzle non fo shizzle facilisizzle, sem fo shizzle my nizzle mofo sizzle, non dang felizzle a est. Suspendisse mah nizzle augue. Sed egestizzle lectus brizzle i saw beyonces tizzles and my pizzle went crizzle. Proin consectetuer things sapien. Etiam aliquet, dizzle sit amet accumsizzle tincidunt, fizzle sizzle sizzle sem, ac vestibulizzle fo shizzle mah nizzle fo rizzle, mah home g-dizzle nisi sit amizzle boom shackalack. Maecenizzle mah nizzle tortizzle vel enizzle. ",m("br"),m("span.quote-by", "G Dawg")]),
-            // m("blockquote", ["fo shizzle mah nizzle fo rizzle, mah home g-dizzle nisi sit amizzle boom shackalack. Maecenizzle mah nizzle tortizzle vel enizzle.",m("br"),m("span.quote-by", "H Dawg")])
-          )
+          m(".comments-container", post.comments.map((comment) => m("blockquote", [comment.comment, m("br"), m("a.quote-by[onclick='$(\'#message-modal\').openModal();'][title='Send a private message']", comment.name)]))          )
         ]))
       )
     ]), m("footer.page-footer", [
       m(".footer-copyright", [
         m(".center-align.valign", "© 2015 Nicholas Antonov & Brian Zawizawa for CS546 at Stevens")
       ])
-    ]),m(".login-box.z-depth-2", {onclick: () => {$('#combo-modal').openModal();}}, [
+    ]),m(`.login-box.z-depth-2${ctrl.loggedIn()?"":".hidden"}`, {onclick: () => {$('#combo-modal').openModal();}}, [
       m("a", "Log in / Register")
+    ]),m(`.login-box.z-depth-2${ctrl.loggedIn()?".hidden":""}`, {onclick: () => {alert('implement messages')}}, [
+      [m("i.material-icons.side-icon", "message"), m("i.material-icons.side-icon", "power_settings_new")],
     ]),m(".modal[id='combo-modal']", [
       m(".modal-content", [
         m("p", "Thanks for using this site. To prevent abuse and allow for a rich featured experience, users are required to log in. Don't Worry! All your information will be kept anonymous as long as you choose to keep it that way.")
@@ -114,7 +148,7 @@ export default {
           ]),
           m(".row", [
             m(".input-field.col.s12", [
-              m("i.material-icons.prefix", "vpn_key"),
+              m("i.material-icons.prefix", "lock_outline"),
               m("input.validate[id='login-password'][type='password']"),
               m("label[for='login-password']", "Password")
             ])
@@ -129,41 +163,37 @@ export default {
         m("h4", "Register"),
         m("form.col.s12", [
           m(".row", [
-            m(".input-field.col.s6", [
+            m(".input-field.col.s12", [
               m("i.material-icons.prefix", "account_circle"),
-              m("input.validate[id='first_name'][required=''][type='text']"),
-              m("label[for='first_name']", "First Name")
-            ]),
-            m(".input-field.col.s6", [
-              m("input.validate[id='last_name'][type='text']"),
-              m("label[for='last_name']", "Last Name")
+              m("input.validate[id='name'][required=''][pattern=.+ .+][type='text']", {onchange: m.withAttr("value", ctrl.name), value: ctrl.name()}),
+              m("label[for='name']", "Name")
             ])
           ]),
           m(".row", [
             m(".input-field.col.s12", [
-              m("i.material-icons.prefix", "vpn_key"),
-              m("input.validate[id='password'][type='password']"),
+              m("i.material-icons.prefix", "lock_outline"),
+              m("input.validate[id='password'][type='password']", {onchange: m.withAttr("value", ctrl.password), value: ctrl.password()}),
               m("label[for='password']", "Password")
             ])
           ]),
           m(".row", [
             m(".input-field.col.s12", [
-              m("i.material-icons.prefix", "vpn_key"),
-              m("input.validate[id='confirm-password'][type='password']"),
+              m("i.material-icons.prefix", "lock_outline"),
+              m("input.validate[id='confirm-password'][type='password']", {onchange: m.withAttr("value", ctrl.passwordConfirmation), value: ctrl.passwordConfirmation()}),
               m("label[for='confirm-password']", "Confirm Password")
             ])
           ]),
           m(".row", [
             m(".input-field.col.s12", [
               m("i.material-icons.prefix", "email"),
-              m("input.validate[id='email'][type='email']"),
+              m("input.validate[id='email'][type='email']", {onchange: m.withAttr("value", ctrl.email), value: ctrl.email()}),
               m("label[for='email']", "Email")
             ])
           ])
         ])
       ]),
       m(".modal-footer", [
-        m("a.modal-action.modal-close.waves-effect.waves-green.btn-flat.right", "Register")
+        m("a.modal-action.modal-close.waves-effect.waves-green.btn-flat.right", {onclick: ctrl.register}, "Register")
       ])
     ]),,m(".modal[id='message-modal']", [
       m(".modal-content", [
