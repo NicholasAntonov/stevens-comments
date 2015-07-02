@@ -20,7 +20,10 @@ export default {
     let name = m.prop(''),
       password = m.prop(''),
       passwordConfirmation = m.prop(''),
-      email = m.prop('');
+      email = m.prop(''),
+        for_name = m.prop(''),
+        postContent = m.prop(''),
+        showName = m.prop('0');
 
     function register () {
       $.post('register.php', {
@@ -38,6 +41,14 @@ export default {
         });
     }
 
+function newPost () {
+    $.post('register.php', {
+        for_name: for_name(),
+        postContent: postContent(),
+        showName: showName()
+    })
+}
+
     function logout () {
       $.post('logout.php');
     }
@@ -50,6 +61,9 @@ export default {
       posts,
       loggedIn,
       name,
+        postContent,
+        for_name,
+        showName,
       password,
       passwordConfirmation,
       email,
@@ -64,21 +78,21 @@ export default {
     ]), m("main.container", [
       m("form.card-panel.hoverable", [
         m(".input-field", [
-          m("input[id='post-title'][type='text'][placeholder='Who are you complimenting?']"),
+          m("input[id='post-title'][type='text'][placeholder='Who are you complimenting?']", {onchange: m.withAttr("value", ctrl.for_name), value: ctrl.for_name()}),
           m("label[for='post-title']")
         ]),
         m(".input-field", [
-          m("textarea.materialize-textarea[id='post-textarea'][length='1000']"),
+          m("textarea.materialize-textarea[id='post-textarea'][length='1000']", {onchange: m.withAttr("value", ctrl.postContent), value: ctrl.postContent()}),
           m("label[for='post-textarea']", "Submit a post!")
         ]),
         m(".row", [
           m(".col.s12.m8", [
             m("div", [
-              m("input[checked='checked'][id='post-anon'][name='named'][type='radio'][value='no']"),
+              m("input[checked='checked'][id='post-anon'][name='named'][type='radio'][value='0']", {onchange: m.withAttr("value", ctrl.showName), value: ctrl.showName()}),
               m("label[for='post-anon']", "Submit anonymously")
             ]),
             m("div", [
-              m("input[id='post-name'][name='named'][type='radio'][value='yes']"),
+              m("input[id='post-name'][name='named'][type='radio'][value='1']", {onchange: m.withAttr("value", ctrl.showName), value: ctrl.showName()}),
               m("label[for='post-name']", "Submit with name")
             ])
           ]),
