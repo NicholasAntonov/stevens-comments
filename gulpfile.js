@@ -31,6 +31,7 @@ gulp.task('js', function(callback) {
     // run webpack
     webpack({
         entry: './src/index.js',
+        devtool: 'inline-source-map',
         output: {
             path: __dirname.concat('/deploy/js/'),
             filename: 'app.js'
