@@ -1,5 +1,7 @@
 <?php
 require_once('include/databaseClassMySQLi.php');
+require_once("include/session.php");
+
 $db = new database();
 header('Content-Type: application/json');
 $result = array();
@@ -19,6 +21,7 @@ if (isset($_POST['name']) &&
         $query = 'insert into users(name, password, email) values (\'' . $name . '\', \'' . password_hash($password, PASSWORD_DEFAULT) . '\', \'' . $email . '\')';
         $db->send_sql($query);
         array_push($result, "Success");
+        $session->login($email, $password);
     }
 } else {
     array_push($result, "Missing a field");
