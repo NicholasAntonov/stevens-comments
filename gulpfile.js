@@ -24,16 +24,15 @@ gulp.task('lint', function () {
 gulp.task('sass', function () {
   return gulp.src(paths.sass)
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./deploy/'));
+    .pipe(gulp.dest('./deploy/css/'));
 });
 
 gulp.task('js', function(callback) {
-  console.log(__dirname.concat('deploy/'));
     // run webpack
     webpack({
         entry: './src/index.js',
         output: {
-            path: __dirname.concat('/deploy/'),
+            path: __dirname.concat('/deploy/js/'),
             filename: 'app.js'
         },
         module: {
@@ -53,7 +52,7 @@ gulp.task('js', function(callback) {
     });
 });
 
-gulp.task('default', ['lint', 'sass', 'js'], function () {
-  gulp.watch(paths.js, ['lint', 'js']);
+gulp.task('default', ['sass', 'js'], function () {
+  gulp.watch(paths.js, ['js']);
   gulp.watch(paths.sass, ['sass']);
 });
