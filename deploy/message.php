@@ -47,7 +47,7 @@ if (isset($_POST['message']) && isset($_POST['to'])) {
         $count = 20;
     }
     if ($session->checkLoggedIn() === true) {
-        $query = "select message, messages.ownage_id, date, name, showName from messages join (select ownage_id, u_id from ownage) a on messages.ownage_id=a.ownage_id natural join users where u_id=1 order by date desc limit $start, $count";
+        $query = "select message, messages.ownage_id, date, name, showName from messages join (select ownage_id, u_id from ownage) a on messages.to_ownage=a.ownage_id natural join users where u_id=".$session->uid." order by date desc limit $start, $count";
         $db->send_sql($query);
         while (($row = $db->next_row()) !== false && !empty($row)) {
             if ($row['showName'] == 0)
