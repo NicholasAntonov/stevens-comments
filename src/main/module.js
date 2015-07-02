@@ -94,7 +94,7 @@ export default {
             m("br"),
             m(".count.center-align", post.votes)
           ]),
-          m("p.flow-text", [post.post ,m("a.quote-by[onclick='$(\'#message-modal\').openModal();'][title='Send a private message']", post.name)]),
+          m("p.flow-text", [post.post ,m("a.quote-by[title='Send a private message']",{onclick: () => { $('#message-modal').openModal()}}, post.name)]),
           m("form", [
             m(".input-field", [
               m(`textarea.materialize-textarea[id='post-textarea-${postPageIndex}'][length='1000']`),
@@ -116,7 +116,7 @@ export default {
               ])
             ])
           ]),
-          m(".comments-container", post.comments.map((comment) => m("blockquote", [comment.comment, m("br"), m("a.quote-by[onclick='$(\'#message-modal\').openModal();'][title='Send a private message']", comment.name)]))          )
+          m(".comments-container", post.comments.map((comment) => m("blockquote", [comment.comment, m("br"), m("a.quote-by[title='Send a private message']",{onclick: () => { $('#message-modal').openModal()}}, comment.name)]))          )
         ]))
       )
     ]), m("footer.page-footer", [
@@ -125,8 +125,8 @@ export default {
       ])
     ]),m(`.login-box.z-depth-2${ctrl.loggedIn()?"":".hidden"}`, {onclick: () => {$('#combo-modal').openModal();}}, [
       m("a", "Log in / Register")
-    ]),m(`.login-box.z-depth-2${ctrl.loggedIn()?".hidden":""}`, {onclick: () => {alert('implement messages')}}, [
-      [m("i.material-icons.side-icon", "message"), m("i.material-icons.side-icon", "power_settings_new")],
+    ]),m(`.login-box.z-depth-2${ctrl.loggedIn()?".hidde":""}`, {onclick: () => {}}, [
+      [m('a[href="messages.html"]', [m("i.material-icons.side-icon", "message")]), m("i.material-icons.side-icon", "power_settings_new")],
     ]),m(".modal[id='combo-modal']", [
       m(".modal-content", [
         m("p", "Thanks for using this site. To prevent abuse and allow for a rich featured experience, users are required to log in. Don't Worry! All your information will be kept anonymous as long as you choose to keep it that way.")
