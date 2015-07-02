@@ -41,7 +41,10 @@ if (isset($_POST['post']) && isset($_POST['for_name'])) {
     }
 } else if (isset($_POST['delete'])) {
     $delete = $db->escape($_POST['delete']);
-    $query = 'update posts set hidden=1 where p_id='.$delete.' and u_id='.$session->uid;
+    if ($session->isAdmin())
+        $query = 'update posts set hidden=1 where p_id='.$delete;
+    else
+        $query = 'update posts set hidden=1 where p_id='.$delete.' and u_id='.$session->uid;
     if ($session->checkLoggedIn() === true) {
         $db->send_sql($query);
         array_push($results, "success");

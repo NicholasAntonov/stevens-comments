@@ -13,7 +13,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
         array_push($results, "fail");
     }
 } else {
-    array_push($results, "Username or password not provided");
+    array_push($results, "Email or password not provided");
 }
 echo json_encode($results);
 ?>
