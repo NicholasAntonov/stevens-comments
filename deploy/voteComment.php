@@ -51,6 +51,17 @@ if (isset($_POST['c_id'])) {
         }
     }
     array_push($results, "success");
+} else if (isset($_POST['delete'])) {
+    $query = 'select value from comment_votes where c_id=\''.$delete.'\' and u_id=\''.$session->uid.'\'';
+    $db->send_sql($query);
+    $row = $db->next_row();
+    if ($row != false && !empty($row)) {
+      $delete = $db->escape($_POST['delete']);
+      $query = 'delete from comment_votes where where c_id=\''.$delete.'\' and u_id=\''.$session->uid;
+      $db->send_sql($query);
+      $query = "update comments set votes = votes-1 where c_id=$delete";
+      $db->send_sql($query);
+    }
 }
 
 echo json_encode($results);
