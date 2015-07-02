@@ -11,6 +11,12 @@ export default {
       }
     });
 
+    let loggedIn = m.request({
+      method: "GET",
+      url: 'checkLogin.php',
+      deserialize: (value) => JSON.parse(value)
+    })
+
     return {
       posts
     }
@@ -57,7 +63,7 @@ export default {
           m("form", [
             m(".input-field", [
               m(`textarea.materialize-textarea[id='post-textarea-${postPageIndex}'][length='1000']`),
-              m(`label[for='post-textarea-${postPageIndex}']`, "Submit a post!")
+              m(`label[for='post-textarea-${postPageIndex}']`, "Submit a comment")
             ]),
             m(".row", [
               m(".col.s12.m8", [
