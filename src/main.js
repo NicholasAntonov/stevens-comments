@@ -74,11 +74,11 @@ export default {
         m(".row", [
           m(".col.s12.m8", [
             m("div", [
-              m("input[checked='checked'][id='post-anon'][name='named'][type='radio'][value='no']"),
+              m("input[checked='checked'][id='post-anon'][name='named'][type='radio'][value='0']"),
               m("label[for='post-anon']", "Submit anonymously")
             ]),
             m("div", [
-              m("input[id='post-name'][name='named'][type='radio'][value='yes']"),
+              m("input[id='post-name'][name='named'][type='radio'][value='1']"),
               m("label[for='post-name']", "Submit with name")
             ])
           ]),
@@ -197,15 +197,15 @@ export default {
       ])
     ]),,m(".modal[id='message-modal']", [
       m(".modal-content", [
-        m("h4", "Message"),
+        m("h4", "Private Message"),
         m("form", [
           m(".input-field.message-to", [
-            m("input.validate[disabled=''][id='disabled'][type='text'][value='I am not editable']"),
+            m("input.validate[disabled=''][id='disabled'][type='text']"),
             m("label[for='disabled']", "Recipient")
           ]),
           m(".input-field", [
             m("textarea.materialize-textarea[id='message-textarea'][length='1000']"),
-            m("label[for='message-textarea']", "Submit a post!")
+            m("label[for='message-textarea']", "Send a private message!")
           ]),
           m(".row", [
             m(".col.s12.m7", [

@@ -30,11 +30,11 @@ gulp.task('sass', function () {
 gulp.task('js', function(callback) {
     // run webpack
     webpack({
-        entry: './messages/index.js',
+        entry: './src/index.js',
         devtool: 'inline-source-map',
         output: {
             path: __dirname.concat('/deploy/js/'),
-            filename: 'messages.js'
+            filename: 'app.js'
         },
         module: {
             loaders: [
