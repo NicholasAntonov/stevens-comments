@@ -4,7 +4,7 @@ import loggedIn from './utility/login-controller';
 
 import messageModal from './message-modal';
 import navPanel from './nav-panel';
-import login from './login';
+import authenticate from './authenticate';
 
 export default {
   controller: function () {
@@ -93,7 +93,7 @@ export default {
         m(".center-align.valign", "© 2015 Nicholas Antonov & Brian Zawizawa for CS546 at Stevens")
       ])
     ]),
-    loggedIn() ? navPanel : login,
+    loggedIn() ? navPanel : authenticate,
     messageModal];
   }
 };
