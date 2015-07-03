@@ -36,6 +36,7 @@ if (isset($_POST['message']) && isset($_POST['to'])) {
         $db->send_sql($query);
         array_push($results, "success");
     } else {
+        http_response_code(401);
         array_push($results, "Please log in");
     }
 } else {

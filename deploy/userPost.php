@@ -37,6 +37,7 @@ if (isset($_POST['post']) && isset($_POST['for_name'])) {
         $db->send_sql($query);
         array_push($results, "success");
     } else {
+        http_response_code(401);
         array_push($results, "Please log in");
     }
 } else if (isset($_POST['delete'])) {
@@ -49,6 +50,7 @@ if (isset($_POST['post']) && isset($_POST['for_name'])) {
         $db->send_sql($query);
         array_push($results, "success");
     } else {
+        http_response_code(401);
         array_push($results, "Please log in");
     }
 } else {
@@ -67,6 +69,9 @@ if (isset($_POST['post']) && isset($_POST['for_name'])) {
             if ($row['showName'] == 0)
                 $row['name'] = "anon";
         }
+    } else {
+        http_response_code(401);
+        array_push($results, "Please log in");
     }
 }
 echo json_encode($results);

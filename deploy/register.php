@@ -15,8 +15,10 @@ if (isset($_POST['name']) &&
     $query = 'select email from users where email=\'' . $email . '\'';
     $db->send_sql($query);
     $row = $db->next_row();
-    if (!($row === false || empty($row)))
+    if (!($row === false || empty($row))) {
         array_push($result, "Email is already taken");
+        http_response_code(406);
+    }
     else if (count($result) == 0) {
         $query = 'insert into users(name, password, email) values (\'' . $name . '\', \'' . password_hash($password, PASSWORD_DEFAULT) . '\', \'' . $email . '\')';
         $db->send_sql($query);
@@ -24,6 +26,7 @@ if (isset($_POST['name']) &&
         $session->login($email, $password);
     }
 } else {
+    http_response_code(406);
     array_push($result, "Missing a field");
 }
 

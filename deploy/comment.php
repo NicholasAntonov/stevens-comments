@@ -32,6 +32,7 @@ if (isset($_POST['comment']) && isset($_POST['p_id'])) {
         $db->send_sql($query);
         array_push($results, "success");
     } else {
+        http_response_code(401);
         array_push($results, "Please log in");
     }
 } else if (isset($_POST['delete'])) {
@@ -44,6 +45,7 @@ if (isset($_POST['comment']) && isset($_POST['p_id'])) {
         $db->send_sql($query);
         array_push($results, "success");
     } else {
+        http_response_code(401);
         array_push($results, "Please log in");
     }
 } else if (isset($_GET['p_id'])) {
