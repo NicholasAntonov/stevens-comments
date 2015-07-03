@@ -1,6 +1,7 @@
 import m from 'mithril';
 
 import register from './register';
+import login from './login';
 
 import loggedIn, {check} from './utility/login-controller';
 
@@ -19,30 +20,7 @@ export default {
           m("a.modal-action.modal-close.waves-effect.waves-green.btn-flat.left", {onclick: () => {$('#register-modal').openModal();}}, "Register")
         ])
       ]),
-      m(".modal[id='login-modal']", [
-        m(".modal-content", [
-          m("h4", "Log In"),
-          m("form.col.s12", [
-            m(".row", [
-              m(".input-field.col.s12", [
-                m("i.material-icons.prefix", "email"),
-                m("input.validate[id='login-email'][type='email']"),
-                m("label[for='login-email']", "Email")
-              ])
-            ]),
-            m(".row", [
-              m(".input-field.col.s12", [
-                m("i.material-icons.prefix", "lock_outline"),
-                m("input.validate[id='login-password'][type='password']"),
-                m("label[for='login-password']", "Password")
-              ])
-            ])
-          ])
-        ]),
-        m(".modal-footer", [
-          m("a.modal-action.modal-close.waves-effect.waves-green.btn-flat.right",  "Log In")
-        ])
-      ]),
+      login,
       register
     ]);
   }

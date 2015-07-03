@@ -8,8 +8,7 @@ export function check () {
    method: "GET",
    dataType: 'json',
    url: 'checkLogin.php'
- }).then((data) => loggedIn(JSON.parse(data)));
- console.log(loggedIn());
+ }).then((data) => console.log(loggedIn(JSON.parse(data))));
 };
 
 export function logout () {

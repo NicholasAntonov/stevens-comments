@@ -1,6 +1,6 @@
 import m from 'mithril';
 
-import loggedIn, {check} from './utility/login-controller';
+import {check} from './utility/login-controller';
 
 export default {
   controller: function () {
