@@ -10,11 +10,9 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     if ($session->login($email, $password) === true) {
         array_push($results, "success");
     } else {
-        http_response_code(406);
         array_push($results, "fail");
     }
 } else {
-    http_response_code(406);
     array_push($results, "Email or password not provided");
 }
 echo json_encode($results);
