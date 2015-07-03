@@ -26,13 +26,13 @@ HTML
 
 Javascript
     [ ] Main Page
-        [ ] Register
-        [ ] Log in
+        [X] Register
+        [X] Log in
         [ ] Posts
-            [ ] view
+            [X] view
             [ ] new
         [ ] Comments
-            [ ] view
+            [X] view
             [ ] new
         [ ] Messages
     [ ] Messages
