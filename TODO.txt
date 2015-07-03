@@ -22,7 +22,7 @@ PHP
         [X] Get all user messages
         [X] Delete message
 HTML
-    [ ] Main Template
+    [X] Main Template
 
 Javascript
     [ ] Main Page

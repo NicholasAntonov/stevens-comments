@@ -25,7 +25,7 @@ $results = array();
 if (isset($_POST['post']) && isset($_POST['for_name'])) {
     if (isset($_POST['showName']))
         $showName = $db->escape($_POST['showName']);
-        if ($showName !== 0)
+        if ($showName != 0)
             $showName = 1;
     else
         $showName = 0;

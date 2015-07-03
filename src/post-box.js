@@ -13,7 +13,6 @@ export default {
       element = m.prop();
 
     function tryPosting () {
-      console.log(loggedIn());
       loggedIn() ? post() : openAuthentication();
     }
 
@@ -29,7 +28,7 @@ export default {
             for_name: forName(),
             showName: showName()
           },
-          success: check
+          success: () => document.location.reload(true)
         });
       }
     }
