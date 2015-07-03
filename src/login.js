@@ -23,13 +23,12 @@ export default {
           $.ajax({
             type: 'POST',
             url: 'register.php',
-            processData: false,
-            contentType: 'application/json',
-            data: JSON.stringify({
+            dataType: 'json',
+            data: {
               name: name(),
               password: password(),
               email: email()
-            }),
+            },
             success: check
           });
         }
