@@ -28,9 +28,9 @@ Javascript
     [ ] Main Page
         [X] Register
         [X] Log in
-        [ ] Posts
+        [X] Posts
             [X] view
-            [ ] new
+            [X] new
         [ ] Comments
             [X] view
             [ ] new

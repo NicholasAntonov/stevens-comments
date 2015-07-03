@@ -5,10 +5,14 @@ import login from './login';
 
 import loggedIn, {check} from './utility/login-controller';
 
+export function openAuthentication () {
+  $('#combo-modal').openModal();
+}
+
 export default {
   view: function (ctrl) {
     return m('.login-module-container', [
-      m('.login-box.z-depth-2', {onclick: () => {$('#combo-modal').openModal();}}, [
+      m('.login-box.z-depth-2', {onclick: openAuthentication}, [
         m("a", "Log in / Register")
       ]),
       m(".modal[id='combo-modal']", [

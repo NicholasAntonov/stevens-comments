@@ -5,6 +5,7 @@ import loggedIn from './utility/login-controller';
 import messageModal from './message-modal';
 import navPanel from './nav-panel';
 import authenticate from './authenticate';
+import postBox from './post-box';
 
 export default {
   controller: function () {
@@ -17,10 +18,6 @@ export default {
       }
     });
 
-    function logout () {
-      $.post('logout.php');
-    }
-
     return {
       posts
     }
@@ -31,31 +28,7 @@ export default {
         m("h1.center-align", "Stevens Compliments and Crushes")
       ])
     ]), m("main.container", [
-      m("form.card-panel.hoverable", [
-        m(".input-field", [
-          m("input[id='post-title'][type='text'][placeholder='Who are you complimenting?']"),
-          m("label[for='post-title']")
-        ]),
-        m(".input-field", [
-          m("textarea.materialize-textarea[id='post-textarea'][length='1000']"),
-          m("label[for='post-textarea']", "Submit a post!")
-        ]),
-        m(".row", [
-          m(".col.s12.m8", [
-            m("div", [
-              m("input[checked='checked'][id='post-anon'][name='named'][type='radio'][value='0']"),
-              m("label[for='post-anon']", "Submit anonymously")
-            ]),
-            m("div", [
-              m("input[id='post-name'][name='named'][type='radio'][value='1']"),
-              m("label[for='post-name']", "Submit with name")
-            ])
-          ]),
-          m(".col.s12.m4", [
-            m("button.btn.waves-effect.waves-light[name='action'][type='submit']", ["Post", m("i.material-icons.right", "message")])
-          ])
-        ])
-      ]),
+      postBox,
       m("ul", ctrl.posts().map((post, postPageIndex) => m("li.submission.card-panel.hoverable", [
           m("h3", post.for_name),
           m(".vote.left", [
