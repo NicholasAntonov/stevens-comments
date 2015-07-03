@@ -77,7 +77,7 @@
         public function escape($str) {
             if (!isset($this->mysqli))
                 $this->connect();
-            return htmlentities(addslashes($this->mysqli->escape_string($str))); //this should be enough right?
+            return htmlentities(addslashes(strip_tags($this->mysqli->escape_string($str)))); //this should be enough right?
         }
 
 		public function send_sql($sql) {

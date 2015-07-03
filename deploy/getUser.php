@@ -7,6 +7,7 @@ $results = array();
 $results['uid'] = $session->uid;
 $results['name'] = $session->name;
 $results['email'] = $session->email;
+$results['admin'] = $session->isAdmin();
 
 echo json_encode($results);
 ?>
