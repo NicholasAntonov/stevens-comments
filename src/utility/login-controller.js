@@ -7,7 +7,7 @@ export function check () {
   m.request({
    method: "GET",
    dataType: 'json',
-   url: 'checkLogin.php'
+   url: 'api/checkLogin.php'
  }).then((data) => loggedIn(JSON.parse(data)));
 };
 
