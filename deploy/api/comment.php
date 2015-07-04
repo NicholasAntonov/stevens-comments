@@ -59,8 +59,9 @@ if (isset($_POST['comment']) && isset($_POST['p_id']) && $_POST['comment'] != ''
     $query = 'select name, u_id, p_id, comments.c_id, comment, date, showName, votes, value, ownage_id from comments natural join users left join (select value, c_id from comment_votes where u_id=\''.$session->uid.'\') a on comments.c_id=a.c_id where p_id=\'' . $p_id . '\' and hidden=0 order by date desc limit ' . $start . ', ' . $count;
     $db->send_sql($query);
     while (($row = $db->next_row()) !== false && !empty($row)) {
-        if ($session->checkLoggedIn() === true && $session->uid != $row['u_id'] && !$session->isAdmin())
+        if (($session->checkLoggedIn() === false) || ($session->checkLoggedIn() === true && $session->uid != $row['u_id'] && !$session->isAdmin()))
             $row['u_id'] = -1;
+        else if ($session->checkLoggedIn() === false)
         if ($row['showName'] == 0 )
             $row['name'] = "anon";
         array_push($results, $row);
