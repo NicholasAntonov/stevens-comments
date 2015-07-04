@@ -25,7 +25,7 @@ $results = array();
 if (isset($_POST['post']) && isset($_POST['for_name']) && $_POST['post'] != '') {
     if (isset($_POST['showName'])) {
         $showName = $db->escape($_POST['showName']);
-        if ($showName != 0 && $showName != 'false' && $showName != False)
+        if ($showName === true || $showName === 'true')
             $showName = 1;
         else
           $showName = 0;
@@ -38,7 +38,7 @@ if (isset($_POST['post']) && isset($_POST['for_name']) && $_POST['post'] != '') 
         date_default_timezone_set('UTC');
         $post = $db->escape($_POST['post']);
         $for_name = $db->escape($_POST['for_name']);
-        $query = 'insert into posts(u_id, post, date, showName, ownage_id, for_name) values (\'' . $session->uid . '\', \'' . $post . '\', \'' . date("Y-m-d H:i:s") . '\', \'' . $showName . '\', \''.$ownage.'\', \''.$for_name.'\')';
+        $query = 'insert into posts(u_id, post, date, showName, ownage_id, for_name) values (\'' . $session->uid . '\', \'' . $post . '\', \'' . date("Y-m-d H:i:s") . '\', ' . $showName . ', \''.$ownage.'\', \''.$for_name.'\')';
         $db->send_sql($query);
         array_push($results, "success");
     } else {
