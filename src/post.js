@@ -1,6 +1,7 @@
 import m from 'mithril';
 
 import bind from './utility/bind';
+import {attempt} from './utility/login-controller';
 
 import commentComponent from './comment';
 
@@ -75,7 +76,7 @@ export default {
             ])
           ]),
           m(".col.s12.m4", [
-            m("button.btn.waves-effect.waves-light[name='action'][type='button']", {onclick: ctrl.submitComment}, ["Comment", m("i.material-icons.right", "chat_bubble")])
+            m("button.btn.waves-effect.waves-light[name='action'][type='button']", {onclick: attempt(ctrl.submitComment)}, ["Comment", m("i.material-icons.right", "chat_bubble")])
           ])
         ])
       ]),

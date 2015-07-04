@@ -19,10 +19,15 @@ $results = array();
 
 if (isset($_POST['comment']) && isset($_POST['p_id']) && $_POST['comment'] != '' && $_POST['p_id'] != '') {
     $p_id = $db->escape($_POST['p_id']);
-    if (isset($_POST['showName']))
+    if (isset($_POST['showName'])) {
         $showName = $db->escape($_POST['showName']);
-    else
+        if ($showName === true || $showName === 'true')
+            $showName = 1;
+        else
+          $showName = 0;
+    } else {
         $showName = 0;
+    }
     if ($session->checkLoggedIn() === true) {
         $db->send_sql("insert into ownage(u_id) values ('$session->uid')");
         $ownage = $db->insert_id();
