@@ -32,7 +32,7 @@ if (isset($_POST['message']) && isset($_POST['to'])) {
         date_default_timezone_set('UTC');
         $message = $db->escape($_POST['message']);
         $to = $db->escape($_POST['to']);
-        $query = 'insert into messages(to_ownage, ownage_id, message, date, showName) values (\'' . $to . '\', \'' . $ownage . '\', \'' . $message . '\', \'' . date("Y-m-d") . '\', \'' . $showName . '\')';
+        $query = 'insert into messages(to_ownage, ownage_id, message, date, showName) values (\'' . $to . '\', \'' . $ownage . '\', \'' . $message . '\', \'' . date("Y-m-d H:i:s") . '\', \'' . $showName . '\')';
         $db->send_sql($query);
         array_push($results, "success");
     } else {
