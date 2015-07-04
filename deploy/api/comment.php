@@ -28,7 +28,7 @@ if (isset($_POST['comment']) && isset($_POST['p_id']) && $_POST['comment'] != ''
         $ownage = $db->insert_id();
         date_default_timezone_set('UTC');
         $comment = $db->escape($_POST['comment']);
-        $query = "insert into comments(u_id, p_id, comment, date, showName, ownage_id) values ('$session->uid', '$p_id', '$comment', '".date("Y-m-d")."', '$showName', $ownage)";
+        $query = "insert into comments(u_id, p_id, comment, date, showName, ownage_id) values ('$session->uid', '$p_id', '$comment', '".date("Y-m-d H:i:s")."', '$showName', $ownage)";
         $db->send_sql($query);
         array_push($results, "success");
     } else {
