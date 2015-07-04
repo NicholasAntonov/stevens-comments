@@ -30,8 +30,6 @@ if (isset($_GET['start']) && isset($_GET['count'])) {
             $row['name'] = "anon";
         if (($session->checkLoggedIn() === false) || ($session->checkLoggedIn() === true && $session->uid != $row['u_id'] && !$session->isAdmin()))
             $row['u_id'] = -1;
-        else if ($session->checkLoggedIn() === false)
-            $row['u_id'] = -1;
         array_push($results, $row);
     }
 
