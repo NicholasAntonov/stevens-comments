@@ -1,5 +1,7 @@
 import m from 'mithril';
 
+import {openAuthentication} from '../authenticate';
+
 let loggedIn = m.prop(false);
 check();
 
@@ -10,6 +12,12 @@ export function check () {
    url: 'api/checkLogin.php'
  }).then((data) => loggedIn(JSON.parse(data)));
 };
+
+export function attempt (func) {
+  return function () {
+    loggedIn() ? func() : openAuthentication();
+  }
+}
 
 export function logout () {
   $.post('logout.php', check);

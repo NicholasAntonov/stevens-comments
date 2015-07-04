@@ -1,9 +1,7 @@
 import m from 'mithril';
 
-import loggedIn, {check} from './utility/login-controller';
+import loggedIn, {check, attempt} from './utility/login-controller';
 import bind from './utility/bind';
-
-import {openAuthentication} from './authenticate';
 
 export default {
   controller: function () {
@@ -12,12 +10,9 @@ export default {
       content = m.prop(""),
       element = m.prop();
 
-    function tryPosting () {
-      loggedIn() ? post() : openAuthentication();
-    }
-
     function post () {
       if (element().checkValidity()) {
+        console.log('posting');
         $.ajax({
           type: 'POST',
           url: 'api/userPost.php',
@@ -27,17 +22,18 @@ export default {
             for_name: forName(),
             showName: showName()
           },
-          success: () => document.location.reload(true)
+          success: () => document.location.reload(true),
+          error: (error) => console.log(error.responseText)
         });
       }
     }
 
     return {
-      tryPosting,
       forName,
       content,
       showName,
-      element
+      element,
+      post
     }
   },
   view: function (ctrl) {
@@ -62,7 +58,7 @@ export default {
           ])
         ]),
         m(".col.s12.m4", [
-          m("button.btn.waves-effect.waves-light[name='action'][type='button']", {onclick: ctrl.tryPosting}, ["Post", m("i.material-icons.right", "message")])
+          m("button.btn.waves-effect.waves-light[name='action'][type='button']", {onclick: attempt(ctrl.post)}, ["Post", m("i.material-icons.right", "message")])
         ])
       ])
     ]);

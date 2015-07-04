@@ -23,12 +23,15 @@ $results = array();
 
 
 if (isset($_POST['post']) && isset($_POST['for_name']) && $_POST['post'] != '') {
-    if (isset($_POST['showName']))
+    if (isset($_POST['showName'])) {
         $showName = $db->escape($_POST['showName']);
-        if ($showName != 0)
+        if ($showName != 0 && $showName != 'false')
             $showName = 1;
-    else
+        else
+          $showName = 0;
+    } else {
         $showName = 0;
+    }
     if ($session->checkLoggedIn() === true) {
         $db->send_sql("insert into ownage(u_id) values ('$session->uid')");
         $ownage = $db->insert_id();
