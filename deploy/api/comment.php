@@ -33,7 +33,7 @@ if (isset($_POST['comment']) && isset($_POST['p_id']) && $_POST['comment'] != ''
         $ownage = $db->insert_id();
         date_default_timezone_set('UTC');
         $comment = $db->escape($_POST['comment']);
-        $query = "insert into comments(u_id, p_id, comment, date, showName, ownage_id) values ('$session->uid', '$p_id', '$comment', '".date("Y-m-d H:i:s")."', '$showName', $ownage)";
+        $query = "insert into comments(u_id, p_id, comment, showName, ownage_id) values ('$session->uid', '$p_id', '$comment', '$showName', $ownage)";
         $db->send_sql($query);
         array_push($results, "success");
     } else {
@@ -66,7 +66,6 @@ if (isset($_POST['comment']) && isset($_POST['p_id']) && $_POST['comment'] != ''
     while (($row = $db->next_row()) !== false && !empty($row)) {
         if (($session->checkLoggedIn() === false) || ($session->checkLoggedIn() === true && $session->uid != $row['u_id'] && !$session->isAdmin()))
             $row['u_id'] = -1;
-        else if ($session->checkLoggedIn() === false)
         if ($row['showName'] == 0 )
             $row['name'] = "anon";
         array_push($results, $row);

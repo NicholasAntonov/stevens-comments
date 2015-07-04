@@ -32,7 +32,7 @@ if (isset($_POST['message']) && isset($_POST['to'])) {
         date_default_timezone_set('UTC');
         $message = $db->escape($_POST['message']);
         $to = $db->escape($_POST['to']);
-        $query = 'insert into messages(to_ownage, ownage_id, message, date, showName) values (\'' . $to . '\', \'' . $ownage . '\', \'' . $message . '\', \'' . date("Y-m-d H:i:s") . '\', \'' . $showName . '\')';
+        $query = 'insert into messages(to_ownage, ownage_id, message, showName) values (\'' . $to . '\', \'' . $ownage . '\', \'' . $message . '\', \'' . $showName . '\')';
         $db->send_sql($query);
         array_push($results, "success");
     } else {
@@ -47,7 +47,7 @@ if (isset($_POST['message']) && isset($_POST['to'])) {
         $count = 20;
     }
     if ($session->checkLoggedIn() === true) {
-        $query = "select message, messages.ownage_id, date, name, showName from messages join (select ownage_id, u_id from ownage) a on messages.to_ownage=a.ownage_id natural join users where u_id=".$session->uid." order by date desc limit $start, $count";
+        $query = "select message, messages.ownage_id, date, name, showName from messages join (select ownage_id, u_id from ownage) a on messages.to_ownage=a.ownage_id natural join users where u_id='".$session->uid."' order by date desc limit $start, $count";
         $db->send_sql($query);
         while (($row = $db->next_row()) !== false && !empty($row)) {
             if ($row['showName'] == 0)
