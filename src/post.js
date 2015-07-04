@@ -1,5 +1,7 @@
 import m from 'mithril';
 
+import commentComponent from './comment';
+
 export default {
   controller: function (args) {
 
@@ -55,7 +57,7 @@ export default {
           ])
         ])
       ]),
-      m(".comments-container", args.post.comments.map((comment) => m("blockquote", [comment.comment, m("br"), m("a.quote-by[title='Send a private message']",{onclick: () => { $('#message-modal').openModal()}}, comment.name)]))          )
+      m(".comments-container", args.post.comments.map((comment) => m.component(commentComponent, {comment})))
     ])
   }
 };
