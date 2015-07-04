@@ -12,7 +12,7 @@ $db = new database();
 
 $results = array();
 
-if (isset($_POST['p_id'])) {
+if (isset($_POST['p_id']) && $_POST['p_id'] != '') {
     $p_id = $db->escape($_POST['p_id']);
     if (isset($_POST['up'])) {
         $query = 'select value from post_votes where p_id=\''.$p_id.'\' and u_id=\''.$session->uid.'\'';
@@ -52,7 +52,7 @@ if (isset($_POST['p_id'])) {
         }
     }
     array_push($results, "success");
-} else if (isset($_POST['delete'])) {
+} else if (isset($_POST['delete']) && $_POST['delete'] != '') {
     $delete = $db->escape($_POST['delete']);
     $query = "select value from post_votes where p_id='$delete' and u_id='".$session->uid."'";
     $db->send_sql($query);

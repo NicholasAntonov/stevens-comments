@@ -17,7 +17,7 @@ $db = new database();
 $results = array();
 
 
-if (isset($_POST['comment']) && isset($_POST['p_id'])) {
+if (isset($_POST['comment']) && isset($_POST['p_id']) && $_POST['comment'] != '' && $_POST['p_id'] != '') {
     $p_id = $db->escape($_POST['p_id']);
     if (isset($_POST['showName']))
         $showName = $db->escape($_POST['showName']);
@@ -34,7 +34,7 @@ if (isset($_POST['comment']) && isset($_POST['p_id'])) {
     } else {
         array_push($results, "Please log in");
     }
-} else if (isset($_POST['delete'])) {
+} else if (isset($_POST['delete']) && $_POST['delete'] != '') {
     $delete = $db->escape($_POST['delete']);
     if ($session->isAdmin())
         $query = 'update comments set hidden=1 where c_id='.$delete;
@@ -46,7 +46,7 @@ if (isset($_POST['comment']) && isset($_POST['p_id'])) {
     } else {
         array_push($results, "Please log in");
     }
-} else if (isset($_GET['p_id'])) {
+} else if (isset($_GET['p_id']) && $_POST['p_id'] != '') {
     $p_id = $db->escape($_GET['p_id']);
     if (isset($_GET['start']) && isset($_GET['count'])) {
         $start = $db->escape($_GET['start']);

@@ -33,7 +33,7 @@ if (isset($_GET['start']) && isset($_GET['count'])) {
         array_push($results, $row);
     }
 
-if (isset($_GET['comments'])) {
+if (isset($_GET['comments']) && $_POST['comments'] != '') {
     foreach($results as $key=>$value) {
         $results[$key]['comments'] = array();
         $comments = $db->escape($_GET['comments']);

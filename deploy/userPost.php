@@ -22,7 +22,7 @@ $db = new database();
 $results = array();
 
 
-if (isset($_POST['post']) && isset($_POST['for_name'])) {
+if (isset($_POST['post']) && isset($_POST['for_name']) && $_POST['post'] != '') {
     if (isset($_POST['showName']))
         $showName = $db->escape($_POST['showName']);
         if ($showName != 0)
@@ -41,7 +41,7 @@ if (isset($_POST['post']) && isset($_POST['for_name'])) {
     } else {
         array_push($results, "Please log in");
     }
-} else if (isset($_POST['delete'])) {
+} else if (isset($_POST['delete']) && $_POST['delete'] != '') {
     $delete = $db->escape($_POST['delete']);
     if ($session->isAdmin())
         $query = 'update posts set hidden=1 where p_id='.$delete;

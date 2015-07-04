@@ -11,7 +11,7 @@ $db = new database();
 
 $results = array();
 
-if (isset($_POST['c_id'])) {
+if (isset($_POST['c_id']) && $_POST['c_id'] != '') {
     $c_id = $db->escape($_POST['c_id']);
     if (isset($_POST['up'])) {
         $query = 'select value from comment_votes where c_id=\''.$c_id.'\' and u_id=\''.$session->uid.'\'';
@@ -51,7 +51,7 @@ if (isset($_POST['c_id'])) {
         }
     }
     array_push($results, "success");
-} else if (isset($_POST['delete'])) {
+} else if (isset($_POST['delete']) && $_POST['delete'] != '') {
     $delete = $db->escape($_POST['delete']);
     $query = 'select value from comment_votes where c_id=\''.$delete.'\' and u_id=\''.$session->uid.'\'';
     $db->send_sql($query);

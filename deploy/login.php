@@ -4,7 +4,7 @@ require_once("include/jsonDecode.php");
 header('Content-Type: application/json');
 
 $results = array();
-if (isset($_POST['email']) && isset($_POST['password'])) {
+if (isset($_POST['email']) && isset($_POST['password']) && $_POST['email'] != '' && $_POST['password'] != '') {
     $email = $_POST['email'];
     $password = $_POST['password'];
     if ($session->login($email, $password) === true) {

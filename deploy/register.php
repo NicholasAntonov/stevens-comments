@@ -7,7 +7,10 @@ header('Content-Type: application/json');
 $result = array();
 if (isset($_POST['name']) &&
     isset($_POST['password']) &&
-    isset($_POST['email'])
+    isset($_POST['email']) &&
+    $_POST['name'] != '' &&
+    $_POST['password'] != '' &&
+    $_POST['email'] != ''
 ) {
     $name = $db->escape($_POST['name']);
     $password = $db->escape($_POST['password']);
