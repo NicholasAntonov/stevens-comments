@@ -4,7 +4,15 @@ export default {
   controller: function (args) {
 
     function deletePost () {
-
+      $.ajax({
+        type: 'POST',
+        url: 'api/userPost.php',
+        dataType: 'json',
+        data: {
+          delete: args.post.p_id
+        },
+        success: () => document.location.reload(true)
+      });
     }
 
     return {
@@ -25,7 +33,7 @@ export default {
           m("a.quote-by[title='Send a private message']", {onclick: () => { $('#message-modal').openModal()}}, args.post.name)
         ]),
       ]),
-      ((console.log(args.post.u_id) || args.post.u_id !== -1) ? m("button.btn.waves-effect.waves-light.red.right.tight[type='button']", {onclick: ctrl.deletePost}, ["", m("i.material-icons", "delete")]) : ""),
+      ((args.post.u_id !== -1) ? m("button.btn.waves-effect.waves-light.red.right.tight[type='button']", {onclick: ctrl.deletePost}, ["", m("i.material-icons", "delete")]) : ""),
       m("form", [
         m(".input-field", [
           m(`textarea.materialize-textarea[id='post-textarea-${args.postPageIndex}'][length='1000']`),

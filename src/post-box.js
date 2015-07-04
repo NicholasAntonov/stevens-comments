@@ -18,7 +18,6 @@ export default {
 
     function post () {
       if (element().checkValidity()) {
-        console.log(showName());
         $.ajax({
           type: 'POST',
           url: 'api/userPost.php',
