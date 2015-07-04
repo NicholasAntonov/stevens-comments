@@ -1,21 +1,31 @@
 import m from 'mithril';
 
 export default {
-  controller: function () {
+  controller: function (args) {
+
+    function deletePost () {
+
+    }
 
     return {
-
+      deletePost
     };
   },
   view: function (ctrl, args) {
-    return m(".submission.card-panel.hoverable", [
-      m("h3", args.post.for_name),
-      m(".vote.left", [
-        m("i.small.material-icons", "thumb_up"),
-        m("br"),
-        m(".count.center-align", args.post.votes)
+    return m('article.submission.card-panel.hoverable', [
+      m('h3', args.post.for_name),
+      m('aside.vote.left', [
+        m('i.small.material-icons', 'thumb_up'),
+        m('br'),
+        m('.count.center-align', args.post.votes)
       ]),
-      m("p.flow-text", [args.post.post , m("a.quote-by[title='Send a private message']",{onclick: () => { $('#message-modal').openModal()}}, args.post.name)]),
+      m('.post-body', [
+        m('p.flow-text', [
+          args.post.post,
+          m("a.quote-by[title='Send a private message']", {onclick: () => { $('#message-modal').openModal()}}, args.post.name)
+        ]),
+      ]),
+      ((console.log(args.post.u_id) || args.post.u_id !== -1) ? m("button.btn.waves-effect.waves-light.red.right.tight[type='button']", {onclick: ctrl.deletePost}, ["", m("i.material-icons", "delete")]) : ""),
       m("form", [
         m(".input-field", [
           m(`textarea.materialize-textarea[id='post-textarea-${args.postPageIndex}'][length='1000']`),

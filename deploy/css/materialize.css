@@ -5804,6 +5804,8 @@ small {
   text-transform: uppercase;
   vertical-align: middle;
   -webkit-tap-highlight-color: transparent; }
+  .btn.tight, .tight.btn-large, .btn-flat.tight {
+    padding: 0 1rem; }
 
 .btn.disabled, .disabled.btn-large, .btn-floating.disabled, .btn-large.disabled, .btn:disabled, .btn-large:disabled, .btn-large:disabled, .btn-floating:disabled {
   background-color: #DFDFDF !important;
@@ -8414,3 +8416,6 @@ nav {
 
 .side-icon {
   padding: 5px; }
+
+.post-body {
+  padding-bottom: 13px; }
