@@ -21,7 +21,7 @@ export default {
         console.log(showName());
         $.ajax({
           type: 'POST',
-          url: 'userPost.php',
+          url: 'api/userPost.php',
           dataType: 'json',
           data: {
             post: content(),

@@ -22,7 +22,7 @@ export default {
         if (element().checkValidity()) {
           $.ajax({
             type: 'POST',
-            url: 'register.php',
+            url: 'api/register.php',
             dataType: 'json',
             data: {
               name: name(),

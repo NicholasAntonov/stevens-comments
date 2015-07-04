@@ -11,7 +11,7 @@ export default {
   controller: function () {
     let posts = m.request({
       method: "GET",
-      url: 'post.php',
+      url: 'api/post.php',
       deserialize: (value) => JSON.parse(value),
       data: {
         comments: 10

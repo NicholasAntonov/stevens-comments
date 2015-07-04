@@ -12,7 +12,7 @@ export default {
         if (element().checkValidity()) {
           $.ajax({
             type: 'POST',
-            url: 'login.php',
+            url: 'api/login.php',
             dataType: 'json',
             data: {
               password: password(),
