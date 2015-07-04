@@ -42,7 +42,7 @@ if (isset($_GET['comments']) && $_GET['comments'] != '') {
         $query = 'select name, u_id, p_id, comments.c_id, comment, date, showName, votes, value, ownage_id from comments natural join users left join (select value, c_id from comment_votes where u_id=\'' . $session->uid . '\') a on comments.c_id=a.c_id where p_id=\'' . $p_id . '\' and hidden=0 order by date desc limit 0, ' . $comments;
         $db->send_sql($query);
         while (($comment = $db->next_row()) !== false && !empty($comment)) {
-            if (($session->checkLoggedIn() === false) || ($session->checkLoggedIn() === true && $session->uid != $row['u_id'] && !$session->isAdmin()))
+            if (($session->checkLoggedIn() === false) || ($session->checkLoggedIn() === true && $session->uid != $comment['u_id'] && !$session->isAdmin()))
                 $comment['u_id'] = -1;
             if ($comment['showName'] == 0)
                 $comment['name'] = "anon";
