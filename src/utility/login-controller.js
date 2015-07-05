@@ -2,7 +2,7 @@ import m from 'mithril';
 
 import {openAuthentication} from '../authenticate';
 
-let loggedIn = m.prop(false);
+export const loggedIn = m.prop(false);
 check();
 
 export function check () {
@@ -22,5 +22,3 @@ export function attempt (func) {
 export function logout () {
   $.post('logout.php', check);
 };
-
-export default loggedIn;

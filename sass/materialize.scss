@@ -37,7 +37,8 @@
 @import "components/date_picker/default.date.scss";
 @import "components/date_picker/default.time.scss";
 
-body {
+body
+.body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;

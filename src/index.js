@@ -1,5 +1,5 @@
 import m from 'mithril';
-import * as main from './main';
+import main from './main-page';
 
 $( document ).ready(() => {
   m.route(document.body, '/', {

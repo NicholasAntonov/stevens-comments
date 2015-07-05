@@ -1,0 +1,27 @@
+import m from 'mithril';
+
+import {loggedIn} from './utility/login-controller';
+
+import messageModal from './message-modal';
+import navPanel from './nav-panel';
+import authenticate from './authenticate';
+
+export default {
+  view: function (ctrl, args) {
+    return m('.body', [
+      m("header", [
+        m("nav.top-nav", [
+          m("h1.center-align", "Stevens Compliments and Crushes")
+        ])
+      ]),
+      args.main,
+      m("footer.page-footer", [
+        m(".footer-copyright", [
+          m(".center-align.valign", "© 2015 Nicholas Antonov & Brian Zawizawa for CS546 at Stevens")
+        ])
+      ]),
+      loggedIn() ? navPanel : authenticate,
+      messageModal
+    ]);
+  }
+};
