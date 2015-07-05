@@ -1,8 +1,8 @@
 <?php
 
-//GET
-//message.php?to=uid&message=content&showName=1
-//message.php?to=uid&message=content
+//POST
+//message.php?to=ownage_id&message=content&showName=1
+//message.php?to=ownage_id&message=content
 
 //GET
 //delete

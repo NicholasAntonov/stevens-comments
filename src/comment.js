@@ -1,5 +1,8 @@
 import m from 'mithril';
 
+import {openMessageModal} from './message-modal';
+import {attempt} from './utility/login-controller';
+
 export default {
   controller: function (args) {
 
@@ -25,7 +28,7 @@ export default {
       ((args.comment.u_id !== -1) ? m("button.btn.waves-effect.waves-light.red.right.tight[type='button']", {onclick: ctrl.deleteComment}, ["", m("i.material-icons", "delete")]) : ""),
       args.comment.comment,
       m("br"),
-      m("a.quote-by[title='Send a private message']", {onclick: () => { $('#message-modal').openModal()}}, args.comment.name)
+      m("a.quote-by[title='Send a private message']", {onclick: attempt(openMessageModal, args.comment.ownage_id)}, args.comment.name)
     ]);
   }
 };

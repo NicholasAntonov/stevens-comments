@@ -2,6 +2,7 @@ import m from 'mithril';
 
 import bind from './utility/bind';
 import {attempt} from './utility/login-controller';
+import {openMessageModal} from './message-modal';
 
 import commentComponent from './comment';
 
@@ -74,7 +75,7 @@ export default {
       m('.post-body', [
         m('p.flow-text', [
           args.post.post,
-          m("a.quote-by[title='Send a private message']", {onclick: () => { $('#message-modal').openModal()}}, args.post.name)
+          m("a.quote-by[title='Send a private message']", {onclick: attempt(openMessageModal, args.post.ownage_id)}, args.post.name)
         ]),
       ]),
       ((args.post.u_id !== -1) ? m("button.btn.waves-effect.waves-light.red.right.tight[type='button']", {onclick: ctrl.deletePost}, ["", m("i.material-icons", "delete")]) : ""),
