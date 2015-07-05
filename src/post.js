@@ -3,6 +3,7 @@ import m from 'mithril';
 import bind from './utility/bind';
 import {attempt} from './utility/login-controller';
 import {openMessageModal} from './message-modal';
+import {updatePosts} from './utility/message-controller';
 
 import commentComponent from './comment';
 
@@ -20,7 +21,9 @@ export default {
         data: {
           delete: args.post.p_id
         },
-        success: () => document.location.reload(true),
+        success: () => {
+          updatePosts();
+        },
         error: () => console.log(error.responseText)
       });
     }
@@ -35,7 +38,9 @@ export default {
           comment: commentText(),
           showName: showName()
         },
-        success: () => document.location.reload(true),
+        success: () => {
+          updatePosts();
+        },
         error: () => console.log(error.responseText)
       });
     }
@@ -50,7 +55,9 @@ export default {
             p_id: args.post.p_id,
             up: true
           },
-          success: () => document.location.reload(true),
+          success: () => {
+            updatePosts();
+          },
           error: () => console.log(error.responseText)
         });
       }

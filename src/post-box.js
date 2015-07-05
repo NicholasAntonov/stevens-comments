@@ -1,5 +1,6 @@
 import m from 'mithril';
 
+import {updatePosts} from './utility/message-controller';
 import loggedIn, {check, attempt} from './utility/login-controller';
 import bind from './utility/bind';
 
@@ -22,7 +23,9 @@ export default {
             for_name: forName(),
             showName: showName()
           },
-          success: () => document.location.reload(true),
+          success: () => {
+            updatePosts();
+          },
           error: (error) => console.log(error.responseText)
         });
       }

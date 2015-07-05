@@ -1,5 +1,6 @@
 import m from 'mithril';
 
+import {updatePosts} from './utility/message-controller';
 import {openMessageModal} from './message-modal';
 import {attempt} from './utility/login-controller';
 
@@ -14,7 +15,9 @@ export default {
         data: {
           delete: args.comment.c_id
         },
-        success: () => document.location.reload(true),
+        success: () => {
+          updatePosts();
+        },
         error: (error) => console.log(error.responseText)
       });
     }
