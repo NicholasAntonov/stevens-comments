@@ -6,17 +6,41 @@ import postComponent from './post';
 
 export default {
   controller: function () {
-    let posts = m.prop([]);
+    const posts = m.prop([]),
+      sortingByTop = m.prop(false);
 
-    m.request({
-      method: "GET",
-      url: 'api/post.php',
-      data: {
+    sortByNew();
+
+    function sortByNew () {
+      sortingByTop(false);
+      updatePosts();
+    }
+
+    function sortByTop () {
+      sortingByTop(true);
+      updatePosts();
+    }
+
+    function updatePosts() {
+      let data = {
         comments: 10
+      };
+
+      if (sortingByTop()) {
+        data.top = true;
       }
-    }).then(posts);
+
+      m.request({
+        method: "GET",
+        url: 'api/post.php',
+        data
+      }).then(posts);
+    }
 
     return {
+      sortByTop,
+      sortByNew,
+      sortingByTop,
       posts
     }
   },
@@ -26,7 +50,11 @@ export default {
         postBox,
         m("ul",
           ctrl.posts().map((post, postPageIndex) => m('li', m.component(postComponent, {post, postPageIndex})))
-        )
+        ),
+        m('.mode-switcher.z-depth-2', [
+          m(`a.waves-effect.waves-green.btn-flat${(ctrl.sortingByTop()) ? '.green.lighten-2' : ''}`, {onclick: ctrl.sortByTop}, 'Top'),
+          m(`a.waves-effect.waves-green.btn-flat${(ctrl.sortingByTop()) ? '' : '.green.lighten-2'}`, {onclick: ctrl.sortByNew}, 'New'),
+        ])
       ])})
     ];
   }

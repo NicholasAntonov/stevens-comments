@@ -107,6 +107,21 @@ h1 {
   cursor: pointer;
 }
 
+.mode-switcher {
+  position: fixed;
+  z-index: 10;
+  background: white;
+  padding: 5px;
+  bottom: 0;
+  left: auto;
+  right: 0;
+  top: auto;
+  border-radius: 2px 0 0 0;
+
+  //border-bottom: solid 2px $primary-color;
+  cursor: pointer;
+}
+
 nav {
   height: auto;
   padding: 10px;
