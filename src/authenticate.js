@@ -17,7 +17,7 @@ export default {
       ]),
       m(".modal[id='combo-modal']", [
         m(".modal-content", [
-          m("p", "Thanks for using this site. To prevent abuse and allow for a rich featured experience, users are required to log in. Don't Worry! All your information will be kept anonymous as long as you choose to keep it that way.")
+          m("p", "Welcome to Stevens Compliments and Crushes. To prevent abuse and allow for a rich fully-featured experience, users are required to log in. Don't Worry! All your information will be kept anonymous.")
         ]),
         m(".modal-footer", [
           m("a.modal-action.modal-close.waves-effect.waves-green.btn-flat.left", {onclick: () => {$('#login-modal').openModal();}}, "Log In"),

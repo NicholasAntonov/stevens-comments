@@ -1,6 +1,6 @@
 import m from 'mithril';
 
-import {check} from './utility/login-controller';
+import {check, login} from './utility/login-controller';
 
 export default {
   controller: function () {
@@ -8,25 +8,11 @@ export default {
       email = m.prop(''),
       element = m.prop();
 
-      function login () {
-        if (element().checkValidity()) {
-          $.ajax({
-            type: 'POST',
-            url: 'api/login.php',
-            dataType: 'json',
-            data: {
-              password: password(),
-              email: email()
-            },
-            success: check
-          });
-        }
-      }
+
 
     return {
       password,
       email,
-      login,
       element
     }
   },
@@ -52,7 +38,7 @@ export default {
         ])
       ]),
       m(".modal-footer", [
-        m("a.modal-action.modal-close.waves-effect.waves-green.btn-flat.right", {onclick: ctrl.login},  "Log In")
+        m("a.modal-action.modal-close.waves-effect.waves-green.btn-flat.right", {onclick: () => login(ctrl.element(), ctrl.email(), ctrl.password())},  "Log In")
       ])
     ]);
   }
