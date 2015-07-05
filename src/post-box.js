@@ -61,7 +61,7 @@ export default {
           ])
         ]),
         m(".col.s12.m4", [
-          m("button.btn.waves-effect.waves-light[name='action'][type='button']", {onclick: attempt(ctrl.post)}, ["Post", m("i.material-icons.right", "message")])
+          m("button.btn.waves-effect.waves-light.right[name='action'][type='button']", {onclick: attempt(ctrl.post)}, ["Post", m("i.material-icons.right", "message")])
         ])
       ])
     ]);
