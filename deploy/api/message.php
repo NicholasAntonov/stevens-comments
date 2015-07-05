@@ -22,10 +22,15 @@ $results = array();
 
 
 if (isset($_POST['message']) && isset($_POST['to'])) {
-    if (isset($_POST['showName']))
+    if (isset($_POST['showName'])) {
         $showName = $db->escape($_POST['showName']);
-    else
+        if ($showName === true || $showName === 'true')
+            $showName = 1;
+        else
+          $showName = 0;
+    } else {
         $showName = 0;
+    }
     if ($session->checkLoggedIn() === true) {
         $db->send_sql("insert into ownage(u_id) values ('$session->uid')");
         $ownage = $db->insert_id();
