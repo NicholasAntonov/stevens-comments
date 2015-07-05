@@ -19,7 +19,8 @@ export default {
         data: {
           delete: args.post.p_id
         },
-        success: () => document.location.reload(true)
+        success: () => document.location.reload(true),
+        error: () => console.log(error.responseText)
       });
     }
 
@@ -33,22 +34,40 @@ export default {
           comment: commentText(),
           showName: showName()
         },
-        success: () => document.location.reload(true)
+        success: () => document.location.reload(true),
+        error: () => console.log(error.responseText)
       });
+    }
+
+    function vote () {
+      if (args.post.value !== '1') {
+        $.ajax({
+          type: 'POST',
+          url: 'api/votePost.php',
+          dataType: 'json',
+          data: {
+            p_id: args.post.p_id,
+            up: true
+          },
+          success: () => document.location.reload(true),
+          error: () => console.log(error.responseText)
+        });
+      }
     }
 
     return {
       commentText,
       deletePost,
       submitComment,
-      showName
+      showName,
+      vote
     };
   },
   view: function (ctrl, args) {
     return m('article.submission.card-panel.hoverable', [
       m('h3', args.post.for_name),
-      m('aside.vote.left', [
-        m('i.small.material-icons', 'thumb_up'),
+      m(`aside.vote.left${((args.post.value === '1')?'.voted':'')}`, [
+        m('i.small.material-icons', {onclick: attempt(ctrl.vote)}, 'thumb_up'),
         m('br'),
         m('.count.center-align', args.post.votes)
       ]),
