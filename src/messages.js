@@ -1,6 +1,7 @@
 import m from 'mithril';
 
 import wrapper from './wrapper';
+import messageComponent from './message';
 
 export default {
   controller: function (args) {
@@ -21,9 +22,11 @@ export default {
   },
   view: function (ctrl) {
     return [
-      m.component(wrapper, {main: m("main.container",
-        ctrl.messages().map((message) => message.message)
-      )})
+      m.component(wrapper, {main: m("main.container", [
+        m('ul',
+          ctrl.messages().map((message) => m.component(messageComponent, {message}))
+        )
+      ])})
     ];
   }
 };
