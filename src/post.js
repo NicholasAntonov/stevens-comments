@@ -56,6 +56,7 @@ export default {
             up: true
           },
           success: () => {
+            console.log('upvoting');
             updatePosts();
           },
           error: () => console.log(error.responseText)

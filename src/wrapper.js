@@ -11,7 +11,7 @@ export default {
     return m('.body', [
       m("header", [
         m("nav.top-nav", [
-          m("h1.center-align", "Stevens Compliments and Crushes")
+          m("h1.center-align", {onclick: () => m.route('/')}, "Stevens Compliments and Crushes")
         ])
       ]),
       args.main,

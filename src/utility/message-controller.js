@@ -23,11 +23,17 @@ export function updatePosts() {
     data.top = true;
   }
 
+  console.log('updating posts with');
+  console.log(data);
+
   m.request({
     method: "GET",
     url: 'api/post.php',
     data
-  }).then(posts);
+  }).then((data) => {
+    console.log('updated');
+    posts(data)
+  });
 };
 
 sortByNew();
