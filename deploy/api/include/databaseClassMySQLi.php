@@ -67,7 +67,6 @@
 			try {
 				if (!$this->mysqli= new mysqli($this->host, $this->user, $this->pass, $this->db))
 					throw new Exception("Cannot Connect to ".$this->host);
-                $this->mysqli->autocommit(TRUE);
 			} catch (Exception $e)
 			{
 				echo $e->getMessage();
@@ -78,7 +77,7 @@
         public function escape($str) {
             if (!isset($this->mysqli))
                 $this->connect();
-            return htmlentities(addslashes(strip_tags($this->mysqli->escape_string($str)))); //this should be enough right?
+            return $this->mysqli->escape_string($str);
         }
 
 		public function send_sql($sql) {
@@ -134,7 +133,7 @@
                 $row = $this->res->fetch_assoc();
                 if (!empty($row))
                     foreach ($row as $key => $value) {
-                        $row[$key] = html_entity_decode(stripslashes($value));
+                        $row[$key] = $value;
                     }
                 return $row;
             }
