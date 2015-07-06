@@ -31,7 +31,8 @@ export function updatePosts() {
     url: 'api/post.php',
     data
   }).then((data) => {
-    console.log('updated');
+    console.log('updated and recieved');
+    console.log(data);
     posts(data)
   });
 };
