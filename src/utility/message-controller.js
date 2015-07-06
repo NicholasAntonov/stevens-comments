@@ -15,6 +15,9 @@ export function sortByTop () {
 };
 
 export function updatePosts() {
+
+  m.redraw.strategy("all");
+
   let data = {
     comments: 10
   };
@@ -23,18 +26,11 @@ export function updatePosts() {
     data.top = true;
   }
 
-  console.log('updating posts with');
-  console.log(data);
-
   m.request({
     method: "GET",
     url: 'api/post.php',
     data
-  }).then((data) => {
-    console.log('updated and recieved');
-    console.log(data);
-    posts(data)
-  });
+  }).then(posts);
 };
 
 sortByNew();

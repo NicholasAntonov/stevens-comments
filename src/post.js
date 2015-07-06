@@ -46,6 +46,7 @@ export default {
     }
 
     function vote () {
+      console.log(`upvoting ${args.post.p_id}`);
       if (args.post.value !== '1') {
         $.ajax({
           type: 'POST',
@@ -55,10 +56,7 @@ export default {
             p_id: args.post.p_id,
             up: true
           },
-          success: () => {
-            console.log('upvoting');
-            updatePosts();
-          },
+          success: updatePosts,
           error: () => console.log(error.responseText)
         });
       }
