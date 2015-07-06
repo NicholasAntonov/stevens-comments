@@ -56,17 +56,18 @@
 			unset($this->res);
 			unset($this->mysqli);
 		}
-	
+
 
 		// connects to the DB or disconnects/reconnects if a connection already existed
 		public function connect()
 		{
 			if (isset($this->mysqli))
 				$this->disconnect();
-		
+
 			try {
 				if (!$this->mysqli= new mysqli($this->host, $this->user, $this->pass, $this->db))
 					throw new Exception("Cannot Connect to ".$this->host);
+                $this->mysqli->autocommit(TRUE);
 			} catch (Exception $e)
 			{
 				echo $e->getMessage();
@@ -133,7 +134,7 @@
                 $row = $this->res->fetch_assoc();
                 if (!empty($row))
                     foreach ($row as $key => $value) {
-                        $row[$key] = htmlentities($value);
+                        $row[$key] = html_entity_decode(stripslashes($value));
                     }
                 return $row;
             }
