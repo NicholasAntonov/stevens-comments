@@ -5064,7 +5064,7 @@ span.badge {
 
 @media only screen and (min-width: 993px) {
   .container {
-    width: 70%; } }
+    width: 60%; } }
 
 .container .row {
   margin-left: -0.75rem;
@@ -8371,7 +8371,9 @@ header {
 
 h1 {
   -webkit-margin-before: 0;
-  -webkit-margin-after: 0; }
+  -webkit-margin-after: 0;
+  cursor: pointer;
+  user-select: none; }
 
 .quote-by {
   cursor: pointer; }
@@ -8432,3 +8434,6 @@ nav {
 
 .post-body {
   padding-bottom: 13px; }
+
+.half-size {
+  font-size: 0.7em; }

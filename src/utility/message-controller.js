@@ -19,6 +19,8 @@ export function updatePosts() {
   m.redraw.strategy("all");
 
   let data = {
+    start: 0,
+    count: 100,
     comments: 10
   };
 

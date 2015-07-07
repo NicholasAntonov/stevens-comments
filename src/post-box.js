@@ -39,7 +39,7 @@ export default {
     }
   },
   view: function (ctrl) {
-    return m("form.card-panel.hoverable", {config: ctrl.element}, [
+    return m("form", {config: ctrl.element}, [
       m(".input-field", [
         m("input[id='post-title'][type='text'][placeholder='Who are you complimenting?']", bind(ctrl.forName)),
         m("label[for='post-title']")
