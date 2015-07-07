@@ -44,18 +44,22 @@ if (isset($_POST['comment']) && isset($_POST['p_id']) && $_POST['comment'] != ''
     if ($session->isAdmin())
         $query = 'update comments set hidden=1 where c_id='.$delete;
     else
-        $query = 'update comments set hidden=1 where c_id='.$delete.' and u_id='.$session->uid;
+        $query = 'update comments set hidden=1 where c_id=\''.$delete.'\' and u_id=\''.$session->uid.'\'';
     if ($session->checkLoggedIn() === true) {
         $db->send_sql($query);
         array_push($results, "success");
     } else {
         array_push($results, "Please log in");
     }
-} else if (isset($_GET['p_id']) && $_POST['p_id'] != '') {
+} else if (isset($_GET['p_id']) && $_GET['p_id'] != '') {
     $p_id = $db->escape($_GET['p_id']);
     if (isset($_GET['start']) && isset($_GET['count'])) {
         $start = $db->escape($_GET['start']);
         $count = $db->escape($_GET['count']);
+        if (!is_numeric($start) || !is_numeric($count)) {
+            $start = 0;
+            $count = 20;
+        }
     } else {
         $start = 0;
         $count = 20;

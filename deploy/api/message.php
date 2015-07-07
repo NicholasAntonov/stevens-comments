@@ -47,6 +47,10 @@ if (isset($_POST['message']) && isset($_POST['to'])) {
     if (isset($_GET['start']) && isset($_GET['count'])) {
         $start = $db->escape($_GET['start']);
         $count = $db->escape($_GET['count']);
+        if (!is_numeric($start) || !is_numeric($count)) {
+            $start = 0;
+            $count = 20;
+        }
     } else {
         $start = 0;
         $count = 20;

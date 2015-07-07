@@ -19,16 +19,16 @@ if (isset($_POST['p_id']) && $_POST['p_id'] != '') {
         $db->send_sql($query);
         $row = $db->next_row();
         if ($row === false || empty($row)) {
-            $query = 'insert into post_votes (p_id, u_id, value) values(' . $p_id . ', ' . $session->uid . ', 1)';
+            $query = 'insert into post_votes (p_id, u_id, value) values(\'' . $p_id . '\', \'' . $session->uid . '\', 1)';
             $db->send_sql($query);
             $query = 'update posts set votes = votes + 1 where p_id='.$p_id;
             $db->send_sql($query);
         } else {
-            $query = 'update post_votes set value=1 where p_id='.$p_id.' and u_id='.$session->uid;
+            $query = 'update post_votes set value=1 where p_id=\''.$p_id.'\' and u_id=\''.$session->uid.'\'';
             $db->send_sql($query);
             $value = $row['value'] ;
             if ($value == -1) {
-                $query = 'update posts set votes = votes + 2 where p_id='.$p_id;
+                $query = 'update posts set votes = votes + 2 where p_id=\''.$p_id.'\'';
                 $db->send_sql($query);
             }
         }
@@ -37,16 +37,16 @@ if (isset($_POST['p_id']) && $_POST['p_id'] != '') {
         $db->send_sql($query);
         $row = $db->next_row();
         if ($row === false || empty($row)) {
-            $query = 'insert into post_votes(p_id, u_id, value) values(' . $p_id . ', ' . $session->uid . ', -1)';
+            $query = 'insert into post_votes(p_id, u_id, value) values(\'' . $p_id . '\', \'' . $session->uid . '\', -1)';
             $db->send_sql($query);
-            $query = 'update posts set votes = votes - 1 where p_id='.$p_id;
+            $query = 'update posts set votes = votes - 1 where p_id=\''.$p_id.'\'';
             $db->send_sql($query);
         } else {
-            $query = 'update post_votes set value=-1 where p_id='.$p_id.' and u_id='.$session->uid;
+            $query = 'update post_votes set value=-1 where p_id=\''.$p_id.'\' and u_id=\''.$session->uid.'\'';
             $db->send_sql($query);
             $value = $row['value'] ;
             if ($value == 1) {
-                $query = 'update posts set votes = votes - 2 where p_id='.$p_id;
+                $query = 'update posts set votes = votes - 2 where p_id=\''.$p_id.'\'';
                 $db->send_sql($query);
             }
         }
